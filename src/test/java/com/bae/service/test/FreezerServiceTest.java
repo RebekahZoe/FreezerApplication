@@ -1,6 +1,10 @@
 package com.bae.service.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
@@ -21,7 +25,9 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {
 
-	private List<Freezers> freezers = new ArrayList<>();
+	private List<Freezers> freezers;
+	private Freezers freezer;
+	private Freezers freezerWithId;
  	@InjectMocks
     private FreezerService service;
 
@@ -30,13 +36,28 @@ public class FreezerServiceTest {
     
     @Before
     public void setup() {
-    	freezers.add(new Freezers("kitchen freezer"));
+    	this.freezers = new ArrayList<>();
+    	this.freezer = new Freezers("kitchen freezer");
+    	this.freezers.add(freezer);
+    	this.freezerWithId = new Freezers(freezer.getFreezerName());
+    	this.freezerWithId.setId(1L);
     }
 	@Test
 	public void readFreezersTest() { 
         Mockito.when(repo.findAll()).thenReturn(freezers);
         assertTrue("Returned no freezers", this.service.readFreezers().size()>0);
 			
+	}
+	
+	@Test
+	public void addFreezerTest() {
+		
+		when(this.repo.save(freezer)).thenReturn(freezerWithId);
+
+		assertEquals(this.freezerWithId, this.service.createFreezer(freezer));
+
+		verify(this.repo, times(1)).save(this.freezer);
+		
 	}
 
 }
