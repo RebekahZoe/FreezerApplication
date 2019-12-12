@@ -17,7 +17,7 @@ public class FreezerService {
 		return this.repo.findAll();
 	}
 	
-	public Freezers createFreezer(Freezers freezer) {
+	public Freezers createFreezer(Freezers freezer){
 		return this.repo.save(freezer);
 	}
 	
