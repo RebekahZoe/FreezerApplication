@@ -38,6 +38,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -46,12 +47,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
-		
-		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <scope>test</scope>
-		</dependency>
 		
 
 		<dependency>
