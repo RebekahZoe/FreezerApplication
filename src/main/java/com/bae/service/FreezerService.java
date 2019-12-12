@@ -18,7 +18,7 @@ public class FreezerService {
 	}
 	
 	public Freezers createFreezer(Freezers freezer) {
-		return null;
+		return this.repo.save(freezer);
 	}
 	
 	
