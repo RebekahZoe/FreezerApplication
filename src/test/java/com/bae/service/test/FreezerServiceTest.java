@@ -28,6 +28,7 @@ public class FreezerServiceTest {
 	private List<Freezers> freezers;
 	private Freezers freezer;
 	private Freezers freezerWithId;
+	final Long id = 1L;
  	@InjectMocks
     private FreezerService service;
 
@@ -58,6 +59,11 @@ public class FreezerServiceTest {
 
 		verify(this.repo, times(1)).save(this.freezer);
 		
+	}
+	@Test
+	public void deleteFreezerTest() {
+		this.repo.deleteById(id);
+		verify(this.repo, times(1)).findById(this.id);
 	}
 
 }
