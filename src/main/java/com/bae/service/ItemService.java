@@ -17,4 +17,9 @@ public class ItemService {
 		return this.repo.save(item);  
 	}
 
+	public void deleteItem(Long id) {
+		this.repo.deleteById(id);
+		
+	}
+
 }
