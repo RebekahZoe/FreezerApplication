@@ -29,13 +29,13 @@ public class Items {
 
 	public Items(Freezers freezers) {
 		super();
-		this.freezer = freezers;
+		this.freezer = freezers; 
 	}
 
 	public Items(String itemName, int quantity, Freezers freezers) {
 		super();
 		this.itemName = itemName;
-		this.quantity = quantity;
+		this.quantity = quantity; 
 		this.freezer = freezers;
 	}
 
