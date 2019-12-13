@@ -1,3 +1,4 @@
+
 package com.bae.persistence.domain;
 
 import javax.persistence.Entity;
@@ -15,20 +16,33 @@ public class Items {
 	private Long id;
 	private String itemName;
 	private int quantity;
-	private Freezers freezer;
+	private static Freezers freezer;
 	
 	public Items() {
 		super();
 	}
 
-	public Items(String itemName) {
+	public Items(String itemName) { 
 		this.itemName = itemName;
+	}
+	
+	
+
+	public Items(Freezers freezers) {
+		super();
+		this.freezer = freezers; 
+	}
+
+	public Items(String itemName, int quantity, Freezers freezers) {
+		super();
+		this.itemName = itemName;
+		this.quantity = quantity; 
+		this.freezer = freezers;
 	}
 
 	public Items(String itemName, int quantity) {
-		super();
 		this.itemName = itemName;
-		this.quantity = quantity;
+		this.quantity = quantity; 
 	}
 	
 	@Id
@@ -58,15 +72,13 @@ public class Items {
 	}
 	@ManyToOne
 	@JoinColumn(name = "freezerId")
-	public Freezers getFreezers() {
+	public static Freezers getFreezers() {
 		return freezer;
 	}
 
-	public void setFreezers(Freezers freezers) {
-		this.freezer = freezers;
+	public static void setFreezers(Freezers freezers) {
+		Items.freezer = freezers;
 	}
-
-	
 
 	@Override
 	public int hashCode() {
@@ -110,3 +122,4 @@ public class Items {
 	
 	
 }
+

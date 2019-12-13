@@ -1,3 +1,4 @@
+
 package com.bae.persistence.domain;
 
 import java.util.Set;
@@ -20,7 +21,7 @@ public class Freezers {
 	private Long id;
 	private String freezerName;
 	
-	private Set<Items>items;
+	private static Set<Items>items;
 	
 	public Freezers(String freezerName) {
 		this.freezerName = freezerName;
@@ -48,13 +49,17 @@ public class Freezers {
 		this.freezerName = freezerName;
 	}
 	@OneToMany(mappedBy = "freezers", cascade = { CascadeType.ALL})
-	public Set<Items> getItems() {
+	public static Set<Items> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<Items> items) {
-		this.items = items;
+	public static void setItems(Set<Items> items) {
+		Freezers.items = items;
 	}
+	
+	
+	
+
 
 	@Override
 	public int hashCode() {
@@ -102,3 +107,4 @@ public class Freezers {
 	
 
 }
+
