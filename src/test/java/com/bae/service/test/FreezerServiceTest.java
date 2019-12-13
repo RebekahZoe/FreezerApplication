@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +20,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerService;
-
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {

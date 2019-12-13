@@ -21,7 +21,7 @@ public class Items {
 		super();
 	}
 
-	public Items(String itemName) {
+	public Items(String itemName) { 
 		this.itemName = itemName;
 	}
 	
@@ -41,7 +41,7 @@ public class Items {
 
 	public Items(String itemName, int quantity) {
 		this.itemName = itemName;
-		this.quantity = quantity;
+		this.quantity = quantity; 
 	}
 	
 	@Id
