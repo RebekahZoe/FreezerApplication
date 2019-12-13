@@ -40,7 +40,7 @@ public class ItemServiceTest {
     	this.items = new ArrayList<>();
     	this.item = new Items("curry",3);
     	this.items.add(item);
-    	this.itemWithId = new Items(item.getItemName(),item.getQuantity());
+    	this.itemWithId = new Items(item.getItemName(),item.getQuantity()); 
     	this.itemWithId.setId(id);
     }
 	@Test
@@ -59,6 +59,13 @@ public class ItemServiceTest {
 
 		verify(this.repo, times(1)).save(this.item);
 		
+	}
+	@Test
+	public void deleteItemTest() {
+		
+		this.service.deleteItem(id);
+		
+		verify(this.repo, times(1)).deleteById(this.id);
 	}
 
 }

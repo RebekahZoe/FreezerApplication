@@ -39,7 +39,7 @@ public class FreezerServiceTest {
     	this.freezers = new ArrayList<>();
     	this.freezer = new Freezers("kitchen freezer");
     	this.freezers.add(freezer);
-    	this.freezerWithId = new Freezers(freezer.getFreezerName());
+    	this.freezerWithId = new Freezers(freezer.getFreezerName()); 
     	this.freezerWithId.setId(1L);
     }
 	@Test
