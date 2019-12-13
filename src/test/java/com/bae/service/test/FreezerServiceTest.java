@@ -62,8 +62,10 @@ public class FreezerServiceTest {
 	}
 	@Test
 	public void deleteFreezerTest() {
-		this.repo.deleteById(id);
-		verify(this.repo, times(1)).findById(this.id);
+		
+		this.service.deleteFreezer(id);
+		
+		verify(this.repo, times(1)).deleteById(this.id);
 	}
 
 }

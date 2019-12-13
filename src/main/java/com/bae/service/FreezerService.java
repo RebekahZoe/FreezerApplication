@@ -20,7 +20,9 @@ public class FreezerService {
 	public Freezers createFreezer(Freezers freezer){
 		return this.repo.save(freezer);
 	}
-	
+	public void  deleteFreezer(Long id) {
+		this.repo.deleteById(id);
+	}
 	
 	
 
