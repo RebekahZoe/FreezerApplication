@@ -17,9 +17,12 @@ public class ItemService {
 		return this.repo.save(item);  
 	}
 
-	public void deleteItem(Long id) {
+	public boolean deleteItem(Long id) throws itemDoesntexistException {
+		if(!this.repo.existsById(id)) {
+			throw new itemDoesntexistException();
+		}
 		this.repo.deleteById(id);
-		
+		return this.repo.existsById(id);
 	}
 
 }

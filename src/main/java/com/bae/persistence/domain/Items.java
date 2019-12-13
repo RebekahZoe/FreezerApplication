@@ -15,7 +15,7 @@ public class Items {
 	private Long id;
 	private String itemName;
 	private int quantity;
-	private Freezers freezer;
+	private static Freezers freezer;
 	
 	public Items() {
 		super();
@@ -71,12 +71,12 @@ public class Items {
 	}
 	@ManyToOne
 	@JoinColumn(name = "freezerId")
-	public Freezers getFreezers() {
+	public static Freezers getFreezers() {
 		return freezer;
 	}
 
-	public void setFreezers(Freezers freezers) {
-		this.freezer = freezers;
+	public static void setFreezers(Freezers freezers) {
+		Items.freezer = freezers;
 	}
 
 	

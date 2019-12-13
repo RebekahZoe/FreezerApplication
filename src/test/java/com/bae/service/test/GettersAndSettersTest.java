@@ -24,10 +24,42 @@ public class GettersAndSettersTest {
 	
 	@Test
 	public void getItemsTest() {
+		Set<Items> items = null; 
+		Set<Items> itemsActual = Freezers.getItems();
+		Assert.assertEquals(items,itemsActual);
+	}
+	
+	@Test
+	public void setItemsTest() {
 		Items item = new Items("Curry",3);
 		Set<Items> items = null; 
-		items.add(item);
-		
+		Freezers.setItems(items);
 	}
 
+	@Test
+	public void setItemNameTest() {
+		Items item = new Items();
+        item.setItemName("curry");
+		Assert.assertEquals("curry", item.getItemName());
+	}
+	
+	@Test
+	public void setItemQuantityTest() {
+		Items item = new Items();
+        item.setQuantity(3);
+		Assert.assertEquals(3, item.getQuantity());
+	}
+	
+	@Test
+	public void getFreezersTest() {
+		Set<Freezers> freezers = null; 
+		Freezers freezersActual = Items.getFreezers();
+		Assert.assertEquals(freezers,freezersActual);
+	}
+	
+	@Test
+	public void setFreezersTest() {
+		Freezers freezer = new Freezers("kitchen freezer");
+		Items.setFreezers(freezer);
+	}
 }

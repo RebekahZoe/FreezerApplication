@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.ItemService;
+import com.bae.service.itemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class ItemServiceTest {
@@ -61,11 +62,12 @@ public class ItemServiceTest {
 		
 	}
 	@Test
-	public void deleteItemTest() {
-		
+	public void deleteItemTest() throws itemDoesntexistException {
+		when(this.repo.existsById(id)).thenReturn(true, false);
 		this.service.deleteItem(id);
 		
 		verify(this.repo, times(1)).deleteById(this.id);
+		verify(this.repo, times(2)).existsById(id);
 	}
 
 }

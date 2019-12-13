@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.repo.FreezerRepo;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 
 @RunWith(SpringRunner.class)
@@ -60,11 +61,13 @@ public class FreezerServiceTest {
 		
 	}
 	@Test
-	public void deleteFreezerTest() {
+	public void deleteFreezerTest() throws FreezerDoesntexistException {
 		
+		when(this.repo.existsById(id)).thenReturn(true, false);  
 		this.service.deleteFreezer(id);
 		
 		verify(this.repo, times(1)).deleteById(this.id);
+		verify(this.repo, times(2)).existsById(id);
 	}
 
 }
