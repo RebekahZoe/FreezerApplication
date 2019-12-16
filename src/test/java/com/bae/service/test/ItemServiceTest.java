@@ -60,7 +60,7 @@ public class ItemServiceTest {
 		assertEquals(this.itemWithId, this.service.createItem(item));
 
 		verify(this.repo, times(1)).save(this.item);
-		
+		 
 	}
 	@Test
 	public void deleteItemTest() throws itemDoesntexistException {
@@ -72,7 +72,16 @@ public class ItemServiceTest {
 	}
 	
 	@Test
-	public void updateItemTest() {
+	public void findItemByIDTest() throws itemDoesntexistException {
+		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
+
+		assertEquals(this.itemWithId, this.service.findItemByID(this.id));
+
+		verify(this.repo, times(1)).findById(this.id);
+	}
+	
+	@Test
+	public void updateItemTest() throws itemDoesntexistException {
 		
 	when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
 	Items updateItem = new Items("curry",2);
@@ -80,6 +89,6 @@ public class ItemServiceTest {
 
 	assertEquals(updateItem, this.service.updateDuck(itemWithId, this.id));
 
-	}
+	} 
 }
 	

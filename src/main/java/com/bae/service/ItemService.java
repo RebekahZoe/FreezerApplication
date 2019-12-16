@@ -1,6 +1,7 @@
 package com.bae.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
@@ -22,7 +23,18 @@ public class ItemService {
 			throw new itemDoesntexistException();
 		}
 		this.repo.deleteById(id);
-		return this.repo.existsById(id);
+		return this.repo.existsById(id); 
+	}
+	public Items findItemByID(Long id) throws itemDoesntexistException {
+		return this.repo.findById(id).orElseThrow(
+				() -> new itemDoesntexistException());
+	}
+
+	public Items updateDuck(Items item, Long id) throws itemDoesntexistException {
+		Items toUpdate = findItemByID(id);
+		toUpdate.setItemName(item.getItemName());
+		toUpdate.setQuantity(item.getQuantity());
+		return this.repo.save(toUpdate);
 	}
 
 }

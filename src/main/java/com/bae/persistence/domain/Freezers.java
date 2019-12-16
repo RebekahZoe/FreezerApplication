@@ -27,7 +27,7 @@ public class Freezers {
 		this.freezerName = freezerName;
 	}
 
-	public Freezers() {
+	public Freezers() { 
 		
 	}
 	@Id

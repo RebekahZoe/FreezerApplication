@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class Items {
 
 	private Long id;
-	private String itemName;
-	private int quantity;
+	private  String itemName;
+	private  int quantity;
 	private static Freezers freezer;
 	
 	public Items() {
@@ -67,7 +67,7 @@ public class Items {
 		return quantity;
 	}
 	
-	public void setQuantity(int quantity) {
+	public  void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	@ManyToOne
