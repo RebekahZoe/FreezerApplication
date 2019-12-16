@@ -51,7 +51,7 @@ public class ItemServiceTest {
         assertTrue("Returned no items", this.service.readItems().size()>0); 
 			
 	}
-	
+	 
 	@Test
 	public void addItemsTest() {
 		

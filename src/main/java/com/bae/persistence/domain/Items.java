@@ -55,7 +55,7 @@ public class Items {
 		this.id = id;
 	}
 	
-	public String getItemName() {
+	public String getItemName() { 
 		return itemName;
 	}
 	
@@ -78,16 +78,6 @@ public class Items {
 
 	public static void setFreezers(Freezers freezers) {
 		Items.freezer = freezers;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
-		result = prime * result + quantity;
-		return result;
 	}
 
 	@Override

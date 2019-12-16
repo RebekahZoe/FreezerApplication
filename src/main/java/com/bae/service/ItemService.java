@@ -1,8 +1,6 @@
 package com.bae.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 
@@ -22,7 +20,7 @@ public class ItemService {
 		if(!this.repo.existsById(id)) {
 			throw new itemDoesntexistException();
 		}
-		this.repo.deleteById(id);
+		this.repo.deleteById(id); 
 		return this.repo.existsById(id); 
 	}
 	public Items findItemByID(Long id) throws itemDoesntexistException {
@@ -34,7 +32,7 @@ public class ItemService {
 		Items toUpdate = findItemByID(id);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());
-		return this.repo.save(toUpdate);
+		return this.repo.save(toUpdate); 
 	}
 
 }
