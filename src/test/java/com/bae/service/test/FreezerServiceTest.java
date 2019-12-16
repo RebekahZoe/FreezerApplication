@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
+import com.bae.service.itemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {
@@ -60,6 +62,16 @@ public class FreezerServiceTest {
 		verify(this.repo, times(1)).save(this.freezer);
 		
 	}
+	
+	@Test
+	public void findFreezerByIDTest() throws FreezerDoesntexistException {
+		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.freezerWithId));
+
+		assertEquals(this.freezerWithId, this.service.findFreezerByID(this.id));
+
+		verify(this.repo, times(1)).findById(this.id);
+	}
+	
 	@Test
 	public void deleteFreezerTest() throws FreezerDoesntexistException {
 		
@@ -67,7 +79,7 @@ public class FreezerServiceTest {
 		this.service.deleteFreezer(id);
 		
 		verify(this.repo, times(1)).deleteById(this.id);
-		verify(this.repo, times(2)).existsById(id);
+		verify(this.repo, times(2)).existsById(id); 
 	}
 
 }
