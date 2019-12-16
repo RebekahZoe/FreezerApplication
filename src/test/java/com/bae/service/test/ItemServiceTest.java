@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -69,6 +70,16 @@ public class ItemServiceTest {
 		verify(this.repo, times(1)).deleteById(this.id);
 		verify(this.repo, times(2)).existsById(id);
 	}
+	
+	@Test
+	public void updateItemTest() {
+		
+	when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
+	Items updateItem = new Items("curry",2);
+	when(this.repo.save(itemWithId)).thenReturn(updateItem);
 
+	assertEquals(updateItem, this.service.updateDuck(itemWithId, this.id));
+
+	}
 }
 	
