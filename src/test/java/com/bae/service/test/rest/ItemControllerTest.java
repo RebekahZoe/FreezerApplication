@@ -23,6 +23,7 @@ import com.bae.rest.ItemsController;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 import com.bae.service.ItemService;
+import com.bae.service.itemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class ItemControllerTest {
@@ -51,7 +52,7 @@ public class ItemControllerTest {
 	}
 
 	@Test
-	public void createFreezerTest() {
+	public void createItemTest() {
 		when(this.service.createItem(testItem)).thenReturn(testItemWithID);
 
 		assertEquals(this.testItemWithID, this.controller.createItems(testItem));
@@ -60,29 +61,29 @@ public class ItemControllerTest {
 	}
 
 	@Test
-	public void deleteFreezerTest() throws FreezerDoesntexistException {
-		this.controller.deleteFreezer(id);
+	public void deleteItemTest() throws itemDoesntexistException {
+		this.controller.deleteItem(id);
 
-		verify(this.service, times(1)).deleteFreezer(id);
+		verify(this.service, times(1)).deleteItem(id);
 	}
 
 	@Test
-	public void findFreezerByIDTest() throws FreezerDoesntexistException {
-		when(this.service.findFreezerByID(this.id)).thenReturn(this.testFreezerWithID);
+	public void findItemByIDTest() throws itemDoesntexistException {
+		when(this.service.findItemByID(this.id)).thenReturn(this.testItemWithID);
 
-		assertEquals(this.testFreezerWithID, this.controller.getFreezer(this.id));
+		assertEquals(this.testItemWithID, this.controller.getItem(this.id));
 
-		verify(this.service, times(1)).findFreezerByID(this.id);
+		verify(this.service, times(1)).findItemByID(this.id);
 	}
 
 	@Test
-	public void getAllFreezersTest() {
+	public void getAllItemsTest() {
 
-		when(service.readFreezers()).thenReturn(this.freezerList);
+		when(service.readItems()).thenReturn(this.itemList);
 
-		assertFalse("Controller has found no Freezers", this.controller.getAllFreezers().isEmpty());
+		assertFalse("Controller has found no Items", this.controller.getAllItems().isEmpty());
 
-		verify(service, times(1)).readFreezers();
+		verify(service, times(1)).readItems();
 	}
 
 }
