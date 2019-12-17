@@ -12,7 +12,7 @@ public class ItemService {
 		return this.repo.findAll();
 	}
  
-	public Object createItem(Items item) {
+	public Items createItem(Items item) {
 		return this.repo.save(item);  
 	}
 

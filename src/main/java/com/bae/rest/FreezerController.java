@@ -26,7 +26,7 @@ public class FreezerController {
 	}
 	
 	@PostMapping("/createFreezer")
-	public Freezers createDuck(@RequestBody Freezers freezer) {
+	public Freezers createFreezer(@RequestBody Freezers freezer) {
 		return this.service.createFreezer(freezer);
 	}
 
@@ -40,7 +40,7 @@ public class FreezerController {
 		return this.service.findFreezerByID(id);
 	}
 
-	@GetMapping("/getAll")
+	@GetMapping("/getAllFreezers")
 	public List<Freezers> getAllFreezers() {
 		return this.service.readFreezers();
 	}

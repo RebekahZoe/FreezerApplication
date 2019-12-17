@@ -51,7 +51,7 @@ public class FreezerControllerTest {
 	public void createFreezerTest() {
 		when(this.service.createFreezer(testFreezer)).thenReturn(testFreezerWithID);
 
-		assertEquals(this.testFreezerWithID, this.controller.createDuck(testFreezer));
+		assertEquals(this.testFreezerWithID, this.controller.createFreezer(testFreezer));
 
 		verify(this.service, times(1)).createFreezer(this.testFreezer);
 	}
