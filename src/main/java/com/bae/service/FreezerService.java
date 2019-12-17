@@ -14,6 +14,11 @@ public class FreezerService {
 	
 	private FreezerRepo repo;
 	
+	public FreezerService(FreezerRepo repo) {
+		super();
+		this.repo = repo;
+	}
+
 	public List<Freezers> readFreezers(){
 		return this.repo.findAll();
 	}
@@ -25,7 +30,7 @@ public class FreezerService {
 	public Freezers findFreezerByID(Long id) throws FreezerDoesntexistException {
 		return this.repo.findById(id).orElseThrow(
 				() -> new FreezerDoesntexistException());
-	}
+	} 
 
 	public boolean  deleteFreezer(Long id) throws FreezerDoesntexistException {
 		if(!this.repo.existsById(id)) {

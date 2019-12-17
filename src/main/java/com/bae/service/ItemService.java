@@ -1,13 +1,23 @@
 package com.bae.service;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 
+@Service
 public class ItemService {
 	
 	public ItemsRepo repo;
 	
+	
+	public ItemService(ItemsRepo repo) {
+		super();
+		this.repo = repo;
+	}
+
 	public List<Items> readItems() {
 		return this.repo.findAll();
 	}
