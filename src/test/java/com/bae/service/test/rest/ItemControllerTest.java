@@ -16,12 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.domain.Items;
-import com.bae.rest.FreezerController;
 import com.bae.rest.ItemsController;
-import com.bae.service.FreezerDoesntexistException;
-import com.bae.service.FreezerService;
 import com.bae.service.ItemService;
 import com.bae.service.itemDoesntexistException;
 
