@@ -28,7 +28,7 @@ public class ItemService {
 				() -> new itemDoesntexistException());
 	}
 
-	public Items updateDuck(Items item, Long id) throws itemDoesntexistException {
+	public Items updateItem(Items item, Long id) throws itemDoesntexistException {
 		Items toUpdate = findItemByID(id);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());
