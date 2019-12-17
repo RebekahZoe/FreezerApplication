@@ -81,5 +81,19 @@ public class ItemControllerTest {
 
 		verify(service, times(1)).readItems();
 	}
+	
+	@Test
+	public void updateItemTest() throws itemDoesntexistException {
+		Items newItem = new Items("curry",2);
+		Items updatedItem = new Items(newItem.getItemName(), newItem.getQuantity());
+		updatedItem.setId(this.id);
+
+		when(this.service.updateItem(newItem, this.id)).thenReturn(updatedItem);
+
+		assertEquals(updatedItem, this.controller.updateItem(this.id, newItem));
+
+		verify(this.service, times(1)).updateItem(newItem, this.id);
+	}
+
 
 }

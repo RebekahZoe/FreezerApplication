@@ -2,6 +2,8 @@ package com.bae.rest;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +48,8 @@ private ItemService service;
 		return this.service.readItems();
 	}
 	
-	@PutMapping("/updateItem")
-	public Items updateItem(Items item, Long id) throws itemDoesntexistException {
+	@PutMapping("/updateItem/{id}")
+	public Items updateItem(@PathParam("id") Long id, @RequestBody Items item) throws itemDoesntexistException {
 		return this.service.updateItem(item, id);
 	}
 	
