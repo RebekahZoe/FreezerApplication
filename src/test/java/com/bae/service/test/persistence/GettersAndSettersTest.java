@@ -1,4 +1,4 @@
-package com.bae.service.test;
+package com.bae.service.test.persistence;
 
 import static org.junit.Assert.*;
 
