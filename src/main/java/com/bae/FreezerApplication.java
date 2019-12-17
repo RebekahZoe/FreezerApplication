@@ -10,4 +10,4 @@ public class FreezerApplication {
 		SpringApplication.run(FreezerApplication.class, args);
 	}
 
-}
+} 

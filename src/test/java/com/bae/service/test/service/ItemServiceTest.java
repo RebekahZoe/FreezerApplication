@@ -87,7 +87,7 @@ public class ItemServiceTest {
 	Items updateItem = new Items("curry",2);
 	when(this.repo.save(itemWithId)).thenReturn(updateItem);
 
-	assertEquals(updateItem, this.service.updateDuck(itemWithId, this.id));
+	assertEquals(updateItem, this.service.updateItem(itemWithId, this.id));
 
 	} 
 }

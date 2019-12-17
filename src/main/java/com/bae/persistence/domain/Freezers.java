@@ -17,7 +17,9 @@ import javax.persistence.Table;
 @Table(name = "freezers")
 public class Freezers {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "freezerId")
 	private Long id;
 	private String freezerName;
 	
@@ -27,12 +29,10 @@ public class Freezers {
 		this.freezerName = freezerName;
 	}
 
-	public Freezers() { 
+	public Freezers() {  
 		
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "freezerId")
+
 	public Long getId() {
 		return id;
 	}
