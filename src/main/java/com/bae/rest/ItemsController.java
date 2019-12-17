@@ -49,7 +49,7 @@ private ItemService service;
 	}
 	
 	@PutMapping("/updateItem/{id}")
-	public Items updateItem(@PathParam("id") Long id, @RequestBody Items item) throws itemDoesntexistException {
+	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws itemDoesntexistException {
 		return this.service.updateItem(item, id);
 	}
 	
