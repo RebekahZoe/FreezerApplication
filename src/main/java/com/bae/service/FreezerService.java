@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Freezers;
+import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
 
 @Service
 public class FreezerService {
 	
 	private FreezerRepo repo;
+	
+	private ItemService itemService;
 	
 	public FreezerService(FreezerRepo repo) {
 		super();
@@ -38,6 +41,13 @@ public class FreezerService {
 		this.repo.deleteById(id);
 		return this.repo.existsById(id); 
 	}
+	
+	public Freezers addItemToFreezer(Long id, Items item) throws FreezerDoesntexistException {
+		Freezers toUpdate = findFreezerByID(id);
+		Items newItem = this.itemService.createItem(item);
+		toUpdate.getItems().add(item);
+		return this.repo.saveAndFlush(toUpdate);
+		}
 	
 	
 

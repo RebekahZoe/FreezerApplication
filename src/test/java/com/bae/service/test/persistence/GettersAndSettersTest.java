@@ -46,16 +46,5 @@ public class GettersAndSettersTest {
 		Assert.assertEquals(3, item.getQuantity());
 	}
 	
-	@Test
-	public void getFreezersTest() {
-		Set<Freezers> freezers = null; 
-		Freezers freezersActual = Items.getFreezers();
-		Assert.assertEquals(freezers,freezersActual);
-	}
 	
-	@Test
-	public void setFreezersTest() {
-		Freezers freezer = new Freezers("kitchen freezer");
-		Items.setFreezers(freezer); 
-	}
 }

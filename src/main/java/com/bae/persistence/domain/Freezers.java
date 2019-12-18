@@ -12,16 +12,21 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 
 @Entity
 @Table(name = "freezers")
+@ToString 
+@EqualsAndHashCode
 public class Freezers {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "freezerId")
 	private Long id;
-	private String freezerName;
+	private String freezerName; 
 	
 	private static Set<Items>items;
 	
@@ -63,43 +68,7 @@ public class Freezers {
 	}
 	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((freezerName == null) ? 0 : freezerName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Freezers other = (Freezers) obj;
-		if (freezerName == null) {
-			if (other.freezerName != null)
-				return false;
-		} else if (!freezerName.equals(other.freezerName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 	
-	
-
-	@Override
-	public String toString() {
-		return "Freezers [id=" + id + ", freezerName=" + freezerName + ", items=" + items + "]";
-	}
 	
 	
 	

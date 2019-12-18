@@ -9,117 +9,57 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 @Entity
 @Table(name = "items")
+@ToString
+@EqualsAndHashCode
 public class Items {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private  String itemName;
-	private  int quantity;
-	@ManyToOne
-	@JoinColumn(name = "freezerId")
-	private static Freezers freezer;
-	
+	private String itemName;
+	private int quantity;
+
 	public Items() {
 		super();
-	} 
-
-	public Items(String itemName) { 
-		this.itemName = itemName;
 	}
-	
 
-	public Items(String itemName, int quantity, Freezers freezers) {
-		super();
+	public Items(String itemName) {
 		this.itemName = itemName;
-		this.quantity = quantity; 
-		Items.freezer = freezers; 
 	}
 
 	public Items(String itemName, int quantity) {
+		super();
 		this.itemName = itemName;
-		this.quantity = quantity; 
+		this.quantity = quantity;
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public String getItemName() { 
+
+	public String getItemName() {
 		return itemName;
 	}
-	
+
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	
+
 	public int getQuantity() {
 		return quantity;
 	}
-	
-	public  void setQuantity(int quantity) {
+
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	public static Freezers getFreezers() {
-		return freezer;
-	}
 
-	public static void setFreezers(Freezers freezers) {
-		Items.freezer = freezers;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
-		result = prime * result + quantity;
-		return result;
-	} 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Items other = (Items) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (itemName == null) {
-			if (other.itemName != null)
-				return false;
-		} else if (!itemName.equals(other.itemName))
-			return false;
-		if (quantity != other.quantity)
-			return false;
-		return true;
-	}
-
-	
-	
-	@Override
-	public String toString() {
-		return "Items [id=" + id + ", itemName=" + itemName + ", quantity=" + quantity + ", freezer=" + freezer + "]";
-	}
-
-	
-
-	
-	
 }
-
