@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
+import com.bae.persistence.repo.ItemsRepo;
 
 @Service
 public class FreezerService {
@@ -15,10 +16,13 @@ public class FreezerService {
 	private FreezerRepo repo;
 	
 	private ItemService itemService;
+	private ItemsRepo itemRepo;
 	
-	public FreezerService(FreezerRepo repo) {
+	public FreezerService(FreezerRepo repo,ItemService itemService,ItemsRepo itemRepo) {
 		super();
 		this.repo = repo;
+		this.itemService= itemService;
+		this.itemRepo = itemRepo;
 	} 
 
 	public List<Freezers> readFreezers(){
@@ -45,7 +49,7 @@ public class FreezerService {
 	public Freezers addItemToFreezer(Long id, Items item) throws FreezerDoesntexistException {
 		Freezers toUpdate = findFreezerByID(id);
 		Items newItem = this.itemService.createItem(item);
-		toUpdate.getItems().add(item);
+		toUpdate.getItems().add(newItem);
 		return this.repo.saveAndFlush(toUpdate);
 		}
 	

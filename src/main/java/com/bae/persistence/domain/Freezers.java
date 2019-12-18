@@ -1,6 +1,7 @@
 
 package com.bae.persistence.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,32 +16,32 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-
 @Entity
 @Table(name = "freezers")
-@ToString 
+@ToString
 @EqualsAndHashCode
 public class Freezers {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "freezerId")
 	private Long id;
-	private String freezerName; 
-	
-	private static Set<Items>items;
-	
+	private String freezerName;
+
+	@OneToMany(mappedBy = "freezers", cascade = { CascadeType.ALL })
+	private Set<Items> items = new HashSet<>();
+
 	public Freezers(String freezerName) {
 		this.freezerName = freezerName;
-	} 
-	
+	}
+
 	public Freezers(String freezerName, Long id) {
 		this.freezerName = freezerName;
-		this.id=id;
-	} 
+		this.id = id;
+	}
 
-	public Freezers() {  
-		
+	public Freezers() {
+
 	}
 
 	public Long getId() {
@@ -58,20 +59,13 @@ public class Freezers {
 	public void setFreezerName(String freezerName) {
 		this.freezerName = freezerName;
 	}
-	@OneToMany(mappedBy = "freezers", cascade = { CascadeType.ALL})
-	public static Set<Items> getItems() {
+
+	public Set<Items> getItems() {
 		return items;
 	}
 
-	public static void setItems(Set<Items> items) {
-		Freezers.items = items;
+	public void setItems(Set<Items> items) {
+		this.items = items;
 	}
-	
-
-	
-	
-	
-	
 
 }
-

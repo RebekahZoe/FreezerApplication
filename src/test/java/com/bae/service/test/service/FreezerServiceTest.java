@@ -19,10 +19,13 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Freezers;
+import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
+import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 import com.bae.service.ItemDoesntexistException;
+import com.bae.service.ItemService;
 
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {
@@ -31,11 +34,18 @@ public class FreezerServiceTest {
 	private Freezers freezer;
 	private Freezers freezerWithId;
 	final Long id = 1L;
+	private Items item;
+	private Items itemWithId;
+	
  	@InjectMocks
     private FreezerService service;
+ 	@Mock
+ 	private ItemService itemService;
 
     @Mock
     private FreezerRepo repo;
+    @Mock
+    private ItemsRepo itemRepo;
     
     @Before
     public void setup() {
@@ -44,6 +54,9 @@ public class FreezerServiceTest {
     	this.freezers.add(freezer);
     	this.freezerWithId = new Freezers(freezer.getFreezerName()); 
     	this.freezerWithId.setId(1L);
+    	this.item = new Items("curry", 2);
+		this.itemWithId = new Items(item.getItemName(),item.getQuantity());
+		this.itemWithId.setId(id);
     }
 	@Test
 	public void readFreezersTest() { 
@@ -80,6 +93,25 @@ public class FreezerServiceTest {
 		
 		verify(this.repo, times(1)).deleteById(this.id);
 		verify(this.repo, times(2)).existsById(id); 
+	}
+	
+	@Test
+	public void addItemToFreezersTest() throws FreezerDoesntexistException {
+		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.freezerWithId));
+		Freezers updateFreezer = this.service.findFreezerByID(id);
+		
+		
+		
+		when(this.itemRepo.findById(this.id)).thenReturn(Optional.of(itemWithId));
+		
+		Mockito.when(this.itemService.createItem(item)).thenReturn(itemWithId);
+		
+		
+		
+		when(this.itemRepo.save(item)).thenReturn(itemWithId);
+		when(this.repo.saveAndFlush(freezerWithId)).thenReturn(updateFreezer);
+		assertEquals(updateFreezer,this.service.addItemToFreezer(this.id, item));
+		
 	}
 
 }
