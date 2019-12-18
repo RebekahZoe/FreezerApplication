@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.rest.ItemsController;
 import com.bae.service.ItemService;
-import com.bae.service.itemDoesntexistException;
+import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class ItemControllerTest {
@@ -57,14 +57,14 @@ public class ItemControllerTest {
 	}
 
 	@Test
-	public void deleteItemTest() throws itemDoesntexistException {
+	public void deleteItemTest() throws ItemDoesntexistException {
 		this.controller.deleteItem(id);
 
 		verify(this.service, times(1)).deleteItem(id);
 	}
 
 	@Test
-	public void findItemByIDTest() throws itemDoesntexistException {
+	public void findItemByIDTest() throws ItemDoesntexistException {
 		when(this.service.findItemByID(this.id)).thenReturn(this.testItemWithID);
 
 		assertEquals(this.testItemWithID, this.controller.getItem(this.id));
@@ -83,7 +83,7 @@ public class ItemControllerTest {
 	}
 	
 	@Test
-	public void updateItemTest() throws itemDoesntexistException {
+	public void updateItemTest() throws ItemDoesntexistException {
 		Items newItem = new Items("curry",2);
 		Items updatedItem = new Items(newItem.getItemName(), newItem.getQuantity());
 		updatedItem.setId(this.id);

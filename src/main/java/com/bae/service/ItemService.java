@@ -10,7 +10,7 @@ import com.bae.persistence.repo.ItemsRepo;
 @Service
 public class ItemService {
 	
-	public ItemsRepo repo;
+	private ItemsRepo repo;
 	
 	
 	public ItemService(ItemsRepo repo) {
@@ -26,19 +26,19 @@ public class ItemService {
 		return this.repo.save(item);  
 	}
 
-	public boolean deleteItem(Long id) throws itemDoesntexistException {
+	public boolean deleteItem(Long id) throws ItemDoesntexistException {
 		if(!this.repo.existsById(id)) {
-			throw new itemDoesntexistException();
+			throw new ItemDoesntexistException();
 		}
 		this.repo.deleteById(id); 
 		return this.repo.existsById(id); 
 	}
-	public Items findItemByID(Long id) throws itemDoesntexistException {
+	public Items findItemByID(Long id) throws ItemDoesntexistException {
 		return this.repo.findById(id).orElseThrow(
-				() -> new itemDoesntexistException());
+				() -> new ItemDoesntexistException());
 	}
 
-	public Items updateItem(Items item, Long id) throws itemDoesntexistException {
+	public Items updateItem(Items item, Long id) throws ItemDoesntexistException {
 		Items toUpdate = findItemByID(id);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());

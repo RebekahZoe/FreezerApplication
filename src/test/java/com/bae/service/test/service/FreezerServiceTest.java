@@ -22,7 +22,7 @@ import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
-import com.bae.service.itemDoesntexistException;
+import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {

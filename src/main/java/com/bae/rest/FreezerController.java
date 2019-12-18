@@ -27,7 +27,7 @@ public class FreezerController {
 	
 	@PostMapping("/createFreezer")
 	public Freezers createFreezer(@RequestBody Freezers freezer) {
-		return this.service.createFreezer(freezer);
+		return this.service.createFreezer(freezer); 
 	}
 
 	@DeleteMapping("/deleteFreezer/{id}")

@@ -1,6 +1,6 @@
 package com.bae.service;
 
-public class itemDoesntexistException extends Exception {
+public class ItemDoesntexistException extends Exception {
 
 	@Override
 	public String toString() {

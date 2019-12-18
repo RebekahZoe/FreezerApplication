@@ -2,8 +2,6 @@ package com.bae.rest;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.Items;
 import com.bae.service.ItemService;
-import com.bae.service.itemDoesntexistException;
+import com.bae.service.ItemDoesntexistException;
 
 @RestController
 public class ItemsController {
@@ -34,12 +32,12 @@ private ItemService service;
 	}
 
 	@DeleteMapping("/deleteItem/{id}")
-	public void deleteItem(@PathVariable Long id) throws itemDoesntexistException {
-		this.service.deleteItem(id);
+	public void deleteItem(@PathVariable Long id) throws ItemDoesntexistException {
+		this.service.deleteItem(id); 
 	}
 	
 	@GetMapping("/getItem/{id}")
-	public Items getItem(@PathVariable Long id) throws  itemDoesntexistException {
+	public Items getItem(@PathVariable Long id) throws  ItemDoesntexistException {
 		return this.service.findItemByID(id);
 	}
 
@@ -49,7 +47,7 @@ private ItemService service;
 	}
 	
 	@PutMapping("/updateItem/{id}")
-	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws itemDoesntexistException {
+	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws ItemDoesntexistException {
 		return this.service.updateItem(item, id);
 	}
 	

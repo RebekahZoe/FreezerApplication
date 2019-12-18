@@ -1,9 +1,5 @@
 package com.bae.service.test.persistence;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 
@@ -31,7 +27,7 @@ public class GettersAndSettersTest {
 	
 	@Test
 	public void setItemsTest() {
-		Items item = new Items("Curry",3);
+		
 		Set<Items> items = null; 
 		Freezers.setItems(items);
 	}

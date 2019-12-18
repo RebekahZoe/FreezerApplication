@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Freezers;
-import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
 
 @Service
