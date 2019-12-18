@@ -23,7 +23,7 @@ public class FreezerController {
 	public FreezerController(FreezerService service) {
 		super();
 		this.service = service;
-	} 
+	}  
 	
 	@PostMapping("/createFreezer")
 	public Freezers createFreezer(@RequestBody Freezers freezer) {

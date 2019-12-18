@@ -27,7 +27,12 @@ public class Freezers {
 	
 	public Freezers(String freezerName) {
 		this.freezerName = freezerName;
-	}
+	} 
+	
+	public Freezers(String freezerName, Long id) {
+		this.freezerName = freezerName;
+		this.id=id;
+	} 
 
 	public Freezers() {  
 		

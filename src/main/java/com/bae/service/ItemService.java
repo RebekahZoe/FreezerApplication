@@ -16,7 +16,7 @@ public class ItemService {
 	public ItemService(ItemsRepo repo) {
 		super();
 		this.repo = repo;
-	}
+	}  
 
 	public List<Items> readItems() {
 		return this.repo.findAll();

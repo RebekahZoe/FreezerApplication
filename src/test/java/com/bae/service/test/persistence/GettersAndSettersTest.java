@@ -23,7 +23,7 @@ public class GettersAndSettersTest {
 		Set<Items> items = null; 
 		Set<Items> itemsActual = Freezers.getItems();
 		Assert.assertEquals(items,itemsActual);
-	}
+	} 
 	
 	@Test
 	public void setItemsTest() {
@@ -56,6 +56,6 @@ public class GettersAndSettersTest {
 	@Test
 	public void setFreezersTest() {
 		Freezers freezer = new Freezers("kitchen freezer");
-		Items.setFreezers(freezer);
+		Items.setFreezers(freezer); 
 	}
 }

@@ -18,11 +18,13 @@ public class Items {
 	private Long id;
 	private  String itemName;
 	private  int quantity;
+	@ManyToOne
+	@JoinColumn(name = "freezerId")
 	private static Freezers freezer;
 	
 	public Items() {
 		super();
-	}
+	} 
 
 	public Items(String itemName) { 
 		this.itemName = itemName;
@@ -65,8 +67,7 @@ public class Items {
 	public  void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	@ManyToOne
-	@JoinColumn(name = "freezerId")
+	
 	public static Freezers getFreezers() {
 		return freezer;
 	}
@@ -83,7 +84,7 @@ public class Items {
 		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
 		result = prime * result + quantity;
 		return result;
-	}
+	} 
 
 	@Override
 	public boolean equals(Object obj) {
@@ -115,6 +116,8 @@ public class Items {
 	public String toString() {
 		return "Items [id=" + id + ", itemName=" + itemName + ", quantity=" + quantity + ", freezer=" + freezer + "]";
 	}
+
+	
 
 	
 	

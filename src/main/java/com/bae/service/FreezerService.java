@@ -16,7 +16,7 @@ public class FreezerService {
 	public FreezerService(FreezerRepo repo) {
 		super();
 		this.repo = repo;
-	}
+	} 
 
 	public List<Freezers> readFreezers(){
 		return this.repo.findAll();
