@@ -28,7 +28,7 @@ public class Freezers {
 	private Long id;
 	private String freezerName;
 
-	@OneToMany(mappedBy = "freezers", cascade = { CascadeType.ALL })
+	@OneToMany
 	private Set<Items> items = new HashSet<>();
 
 	public Freezers(String freezerName) {
