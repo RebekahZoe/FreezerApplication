@@ -7,7 +7,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +38,8 @@ public class FreezerControllerTest {
 	private Freezers testFreezer;
 
 	private Freezers testFreezerWithID;
+	
+	private Set<Items> items = new HashSet<>();
 	
 	private Items item;
 
@@ -80,11 +84,11 @@ public class FreezerControllerTest {
 	@Test
 	public void getAllFreezersTest() {
 
-		when(service.readFreezers()).thenReturn(this.freezerList);
+		when(this.service.readFreezers()).thenReturn(this.freezerList);
 
 		assertFalse("Controller has found no Freezers", this.controller.getAllFreezers().isEmpty());
 
-		verify(service, times(1)).readFreezers();
+		verify(this.service, times(1)).readFreezers();
 	}
 	@Test
 	public void addItemToFreezerTest() throws FreezerDoesntexistException {
@@ -94,6 +98,15 @@ public class FreezerControllerTest {
 
 		verify(this.service, times(1)).addItemToFreezer(this.id,this.item);
 	
+	}
+	
+	@Test
+	public void getItemsFromFreezerTest() {
+		when(this.service.getItemsFromFreezer(this.id)).thenReturn(items);
+		assertEquals(this.items,this.service.getItemsFromFreezer(this.id));
+		verify(this.service,times(1)).getItemsFromFreezer(this.id);
+		
+		
 	}
 
 

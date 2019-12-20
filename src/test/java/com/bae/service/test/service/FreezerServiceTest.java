@@ -7,8 +7,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,11 +26,11 @@ import com.bae.persistence.repo.FreezerRepo;
 import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
-import com.bae.service.ItemDoesntexistException;
 import com.bae.service.ItemService;
 
 @RunWith(SpringRunner.class)
 public class FreezerServiceTest {
+	
 
 	private List<Freezers> freezers;
 	private Freezers freezer;
@@ -36,7 +38,7 @@ public class FreezerServiceTest {
 	final Long id = 1L;
 	private Items item;
 	private Items itemWithId;
-	
+	private Set<Items> items = new HashSet<>();
  	@InjectMocks
     private FreezerService service;
  	@Mock
@@ -111,6 +113,12 @@ public class FreezerServiceTest {
 		when(this.itemRepo.save(item)).thenReturn(itemWithId);
 		when(this.repo.saveAndFlush(freezerWithId)).thenReturn(updateFreezer);
 		assertEquals(updateFreezer,this.service.addItemToFreezer(this.id, item));
+		
+	}
+	@Test
+	public void getItemsFromFreezerTest() throws FreezerDoesntexistException {
+		when(this.repo.getOne(this.id)).thenReturn(this.freezer);
+		assertEquals(this.items,this.service.getItemsFromFreezer(id));
 		
 	}
 

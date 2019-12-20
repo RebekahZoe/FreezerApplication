@@ -1,6 +1,7 @@
 package com.bae.rest;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,9 +47,13 @@ public class FreezerController {
 	public List<Freezers> getAllFreezers() {
 		return this.service.readFreezers();
 	}
-	@PatchMapping("/addItem/{id")
+	@PatchMapping("/addItem/{id}")
 	public Freezers addItemToFreezer(@PathVariable Long id,@RequestBody Items item) throws FreezerDoesntexistException {
 		return this.service.addItemToFreezer(id, item);
+	}
+	@GetMapping("/getItemsFromFreezer/{id}")
+	public Set<Items> getItemsFromFreezer(@PathVariable Long id){
+		return this.service.getItemsFromFreezer(id);
 	}
 
 }
