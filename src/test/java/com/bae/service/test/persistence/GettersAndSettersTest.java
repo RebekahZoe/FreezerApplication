@@ -1,5 +1,7 @@
 package com.bae.service.test.persistence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,16 +15,27 @@ import com.bae.persistence.domain.Items;
 public class GettersAndSettersTest {
 
 	private Freezers freezer = new Freezers();
+	private Items item = new Items();
 
 	@Before
 	public void setup() {
 		this.freezer = new Freezers();
+		this.item = new Items();
 	}
 
 	@Test
 	public void setFreezerNameTest() {
 		freezer.setFreezerName("kitchen freezer");
 		Assert.assertEquals("kitchen freezer", freezer.getFreezerName());
+	}
+	
+	@Test
+	public void getIdTest() {
+		freezer.setId(1L);
+		assertEquals(1L,freezer.getId());
+		
+		item.setId(1L);
+		assertEquals(1L,item.getId());
 	}
 
 	@Test
@@ -50,6 +63,28 @@ public class GettersAndSettersTest {
 		Items item = new Items();
 		item.setQuantity(3);
 		Assert.assertEquals(3, item.getQuantity());
+	}
+	
+	@Test
+	public void constructorTest() {
+		Freezers freezer = new Freezers("kitchen freezer");
+		assertEquals("kitchen freezer",freezer.getFreezerName());
+		
+		Items item = new Items("curry",2);
+		assertEquals("curry",item.getItemName());
+		assertEquals(2,item.getQuantity());
+		
+		Items item2 = new Items("curry");
+		assertEquals("curry",item2.getItemName());
+		
+		Freezers freezer2 = new Freezers("kitchen freezer",1L);
+
+		assertEquals("kitchen freezer",freezer.getFreezerName());
+
+		assertEquals(1L,freezer2.getId());
+		
+		assertEquals("Freezers [id= + id + , freezerName= + freezerName + , items= + items + ]",freezer.toString());
+		assertEquals("Items [id=\" + id + \", itemName=\" + itemName + \", quantity=\" + quantity + \"]",item.toString());
 	}
 
 }
