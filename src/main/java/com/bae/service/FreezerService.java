@@ -24,7 +24,6 @@ public class FreezerService {
 		this.itemService= itemService;
 		this.itemRepo = itemRepo;
 	} 
-
 	public List<Freezers> readFreezers(){
 		return this.repo.findAll();
 	}
