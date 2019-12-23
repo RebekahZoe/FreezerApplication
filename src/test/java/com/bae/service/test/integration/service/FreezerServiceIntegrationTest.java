@@ -74,6 +74,6 @@ public class FreezerServiceIntegrationTest {
 	}
 	@Test
 	public void testGetItemsFromFreezer() {
-		assertThat(this.service.getItemsFromFreezer(this.testFreezerWithID.getId())).isEqualTo(toUpdate.getItems());
+		assertThat(this.service.getItemsFromFreezer(this.testFreezerWithID.getId())).isEqualTo(toUpdate);
 	}
 }
