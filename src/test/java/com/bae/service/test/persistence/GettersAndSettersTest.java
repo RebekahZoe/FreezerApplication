@@ -83,8 +83,8 @@ public class GettersAndSettersTest {
 
 		assertEquals(1L,freezer2.getId());
 		
-		assertEquals("Freezers [id= + id + , freezerName= + freezerName + , items= + items + ]",freezer.toString());
-		assertEquals("Items [id=\" + id + \", itemName=\" + itemName + \", quantity=\" + quantity + \"]",item.toString());
+		assertEquals("Freezers [id=null, freezerName=kitchen freezer, items=[]]",freezer.toString());
+		assertEquals("Items [id=null, itemName=curry, quantity=2]",item.toString());
 	}
 
 }
