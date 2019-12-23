@@ -1,4 +1,4 @@
-package com.bae.service.test.service;
+package com.bae.service.test.unit.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

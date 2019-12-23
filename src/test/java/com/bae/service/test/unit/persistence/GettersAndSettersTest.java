@@ -1,4 +1,4 @@
-package com.bae.service.test.persistence;
+package com.bae.service.test.unit.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
