@@ -52,7 +52,7 @@ public class FreezerController {
 		return this.service.addItemToFreezer(id, item);
 	}
 	@GetMapping("/getItemsFromFreezer/{id}")
-	public Set<Items> getItemsFromFreezer(@PathVariable Long id){
+	public Set<Items> getItemsFromFreezer(@PathVariable Long id) throws FreezerDoesntexistException{
 		return this.service.getItemsFromFreezer(id);
 	}
 

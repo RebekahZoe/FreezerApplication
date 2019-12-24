@@ -3,6 +3,11 @@ package com.bae.service.test.integration.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.FetchType;
+
 import org.assertj.core.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +42,12 @@ public class FreezerServiceIntegrationTest {
 	private Freezers toUpdate;
 	
 	private Items item;
+	
+	private Set<Items> itemSet= new HashSet<>();
+	
+	private Long id;
+	
+	private Freezers freezerWithItem;
 
 	@Before
 	public void init() {
@@ -47,6 +58,11 @@ public class FreezerServiceIntegrationTest {
 		this.item = new Items("curry",2);
 		this.item.setId(1L);
 		toUpdate.getItems().add(item);
+		
+		this.freezerWithItem = this.repo.save(this.testFreezer);
+		this.itemSet.add(this.item);
+		freezerWithItem.setItems(this.itemSet);
+		this.id = this.freezerWithItem.getId();
 	}
 
 	@Test
@@ -73,7 +89,7 @@ public class FreezerServiceIntegrationTest {
 		assertThat(this.service.addItemToFreezer(this.testFreezerWithID.getId(),new Items("curry",2))).isEqualTo(toUpdate);
 	}
 	@Test
-	public void testGetItemsFromFreezer() {
-		assertThat(this.service.getItemsFromFreezer(this.testFreezerWithID.getId())).isEqualTo(toUpdate);
+	public void testGetItemsFromFreezer() throws FreezerDoesntexistException {
+		assertThat(this.service.getItemsFromFreezer(this.id)).isEqualTo(freezerWithItem.getItems());
 	}
 }

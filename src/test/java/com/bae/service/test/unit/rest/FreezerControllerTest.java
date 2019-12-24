@@ -101,7 +101,7 @@ public class FreezerControllerTest {
 	}
 	
 	@Test
-	public void getItemsFromFreezerTest() {
+	public void getItemsFromFreezerTest() throws FreezerDoesntexistException {
 		when(this.service.getItemsFromFreezer(this.id)).thenReturn(items);
 		assertEquals(this.items,this.service.getItemsFromFreezer(this.id));
 		verify(this.service,times(1)).getItemsFromFreezer(this.id);

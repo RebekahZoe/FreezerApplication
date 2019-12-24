@@ -1,6 +1,7 @@
 package com.bae.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -52,8 +53,8 @@ public class FreezerService {
 		return this.repo.saveAndFlush(toUpdate);
 		}
 
-	public Set<Items> getItemsFromFreezer(Long id) {
-		Freezers toDisplay = this.repo.getOne(id);
+	public Set<Items> getItemsFromFreezer(Long id) throws FreezerDoesntexistException {
+		Freezers toDisplay = findFreezerByID(id);
 		return toDisplay.getItems();
 	}
 	
