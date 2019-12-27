@@ -17,13 +17,10 @@ public class FreezerService {
 	private FreezerRepo repo;
 	
 	private ItemService itemService;
-	private ItemsRepo itemRepo;
-	
 	public FreezerService(FreezerRepo repo,ItemService itemService,ItemsRepo itemRepo) {
 		super();
 		this.repo = repo;
 		this.itemService= itemService;
-		this.itemRepo = itemRepo;
 	} 
 	public List<Freezers> readFreezers(){
 		return this.repo.findAll();

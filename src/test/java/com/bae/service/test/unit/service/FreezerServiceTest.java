@@ -35,7 +35,7 @@ public class FreezerServiceTest {
 	private List<Freezers> freezers;
 	private Freezers freezer;
 	private Freezers freezerWithId;
-	final Long id = 1L;
+	private Long id;
 	private Items item;
 	private Items itemWithId;
 	private Set<Items> items = new HashSet<>();
@@ -56,9 +56,10 @@ public class FreezerServiceTest {
     	this.freezers.add(freezer);
     	this.freezerWithId = new Freezers(freezer.getFreezerName()); 
     	this.freezerWithId.setId(1L);
+    	this.id = freezerWithId.getId();
     	this.item = new Items("curry", 2);
 		this.itemWithId = new Items(item.getItemName(),item.getQuantity());
-		this.itemWithId.setId(id);
+		this.itemWithId.setId(1L);
     }
 	@Test
 	public void readFreezersTest() { 
@@ -117,8 +118,8 @@ public class FreezerServiceTest {
 	}
 	@Test
 	public void getItemsFromFreezerTest() throws FreezerDoesntexistException {
-		when(this.repo.getOne(this.id)).thenReturn(this.freezer);
-		assertEquals(this.items,this.service.getItemsFromFreezer(id));
+		Mockito.when(this.repo.findById(this.freezerWithId.getId())).thenReturn(Optional.of(this.freezerWithId));
+		assertEquals(this.items,this.service.getItemsFromFreezer(this.freezerWithId.getId()));
 		
 	}
 

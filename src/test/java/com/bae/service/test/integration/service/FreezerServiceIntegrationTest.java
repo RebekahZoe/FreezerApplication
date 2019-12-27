@@ -36,16 +36,11 @@ public class FreezerServiceIntegrationTest {
 	private Freezers testFreezer;
 
 	private Freezers testFreezerWithID;
-	@Autowired
-	private ItemService itemService;
-	
 	private Freezers toUpdate;
 	
 	private Items item;
 	
 	private Set<Items> itemSet= new HashSet<>();
-	
-	private Long id;
 	
 	private Freezers freezerWithItem;
 
@@ -60,9 +55,7 @@ public class FreezerServiceIntegrationTest {
 		toUpdate.getItems().add(item);
 		
 		this.freezerWithItem = this.repo.save(this.testFreezer);
-		this.itemSet.add(this.item);
-		freezerWithItem.setItems(this.itemSet);
-		this.id = this.freezerWithItem.getId();
+
 	}
 
 	@Test
@@ -90,6 +83,6 @@ public class FreezerServiceIntegrationTest {
 	}
 	@Test
 	public void testGetItemsFromFreezer() throws FreezerDoesntexistException {
-		assertThat(this.service.getItemsFromFreezer(this.id)).isEqualTo(freezerWithItem.getItems());
+		assertThat(this.service.getItemsFromFreezer(this.toUpdate.getId())).isEqualTo(freezerWithItem.getItems());
 	}
 }
