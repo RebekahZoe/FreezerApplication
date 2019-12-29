@@ -1,4 +1,4 @@
-package com.bae.service.test.rest;
+package com.bae.service.test.unit.rest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +7,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Freezers;
+import com.bae.persistence.domain.Items;
 import com.bae.rest.FreezerController;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
@@ -35,6 +38,10 @@ public class FreezerControllerTest {
 	private Freezers testFreezer;
 
 	private Freezers testFreezerWithID;
+	
+	private Set<Items> items = new HashSet<>();
+	
+	private Items item;
 
 	final long id = 1L;
 	
@@ -45,6 +52,8 @@ public class FreezerControllerTest {
 		this.testFreezer = new Freezers("Kitchen Freezer");
 		this.testFreezerWithID = new Freezers(testFreezer.getFreezerName());
 		this.testFreezerWithID.setId(id);
+		this.item = new Items("curry",2);
+		this.item.setId(id);
 	}
 
 	@Test
@@ -75,11 +84,29 @@ public class FreezerControllerTest {
 	@Test
 	public void getAllFreezersTest() {
 
-		when(service.readFreezers()).thenReturn(this.freezerList);
+		when(this.service.readFreezers()).thenReturn(this.freezerList);
 
 		assertFalse("Controller has found no Freezers", this.controller.getAllFreezers().isEmpty());
 
-		verify(service, times(1)).readFreezers();
+		verify(this.service, times(1)).readFreezers();
+	}
+	@Test
+	public void addItemToFreezerTest() throws FreezerDoesntexistException {
+		when(this.service.addItemToFreezer(this.id, this.item)).thenReturn(testFreezerWithID);
+
+		assertEquals(this.testFreezerWithID, this.controller.addItemToFreezer(this.id,this.item));
+
+		verify(this.service, times(1)).addItemToFreezer(this.id,this.item);
+	
+	}
+	
+	@Test
+	public void getItemsFromFreezerTest() throws FreezerDoesntexistException {
+		when(this.service.getItemsFromFreezer(this.id)).thenReturn(items);
+		assertEquals(this.items,this.service.getItemsFromFreezer(this.id));
+		verify(this.service,times(1)).getItemsFromFreezer(this.id);
+		
+		
 	}
 
 

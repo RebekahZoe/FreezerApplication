@@ -1,4 +1,4 @@
-package com.bae.service.test.service;
+package com.bae.service.test.unit.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.ItemService;
-import com.bae.service.itemDoesntexistException;
+import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class ItemServiceTest {
@@ -63,7 +63,7 @@ public class ItemServiceTest {
 		 
 	}
 	@Test
-	public void deleteItemTest() throws itemDoesntexistException {
+	public void deleteItemTest() throws ItemDoesntexistException {
 		when(this.repo.existsById(id)).thenReturn(true, false);
 		this.service.deleteItem(id);
 		
@@ -72,7 +72,7 @@ public class ItemServiceTest {
 	}
 	
 	@Test
-	public void findItemByIDTest() throws itemDoesntexistException {
+	public void findItemByIDTest() throws ItemDoesntexistException {
 		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
 
 		assertEquals(this.itemWithId, this.service.findItemByID(this.id));
@@ -81,7 +81,7 @@ public class ItemServiceTest {
 	}
 	
 	@Test
-	public void updateItemTest() throws itemDoesntexistException {
+	public void updateItemTest() throws ItemDoesntexistException {
 		
 	when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
 	Items updateItem = new Items("curry",2);
