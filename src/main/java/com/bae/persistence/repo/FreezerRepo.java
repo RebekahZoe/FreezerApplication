@@ -9,5 +9,6 @@ import com.bae.persistence.domain.Freezers;
 @Repository
 public interface FreezerRepo extends JpaRepository<Freezers, Long> {
 
+	Freezers findByFreezerName(String name);
 }
 

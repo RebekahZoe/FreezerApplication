@@ -33,6 +33,11 @@ public class ItemService {
 		this.repo.deleteById(id); 
 		return this.repo.existsById(id); 
 	}
+	
+	public boolean  deleteItem(String name) throws ItemDoesntexistException {
+		return this.deleteItem(this.repo.findByItemName(name).getId()); 
+	}
+	
 	public Items findItemByID(Long id) throws ItemDoesntexistException {
 		return this.repo.findById(id).orElseThrow(
 				() -> new ItemDoesntexistException());

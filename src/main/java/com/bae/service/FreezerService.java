@@ -42,7 +42,10 @@ public class FreezerService {
 		this.repo.deleteById(id);
 		return this.repo.existsById(id); 
 	}
-	
+
+	public boolean  deleteFreezer(String name) throws FreezerDoesntexistException {
+		return this.deleteFreezer(this.repo.findByFreezerName(name).getId()); 
+	}
 	public Freezers addItemToFreezer(Long id, Items item) throws FreezerDoesntexistException {
 		Freezers toUpdate = findFreezerByID(id);
 		Items newItem = this.itemService.createItem(item);
