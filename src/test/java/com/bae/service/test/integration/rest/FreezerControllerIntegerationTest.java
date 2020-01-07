@@ -40,7 +40,7 @@ public class FreezerControllerIntegerationTest {
 
 	@Autowired
 	private FreezerRepo repo;
-	
+
 	@Autowired
 	private ItemsRepo itemRepo;
 
@@ -51,11 +51,11 @@ public class FreezerControllerIntegerationTest {
 	private Freezers testFreezer;
 
 	private Freezers testFreezerWithID;
-	
+
 	private Items testItem;
-	
+
 	private Items testItemWithID;
-	
+
 	private Set<Items> setItems = new HashSet<>();
 
 	@Before
@@ -67,9 +67,9 @@ public class FreezerControllerIntegerationTest {
 		this.id = this.testFreezerWithID.getId();
 		this.testItem = new Items("curry",2);
 		this.testItemWithID = this.itemRepo.save(this.testItem);
-		
+
 	}
-	
+
 	@Test
 	public void testCreateFreezer() throws Exception {
 		String result = this.mock
@@ -78,7 +78,7 @@ public class FreezerControllerIntegerationTest {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertEquals(this.mapper.writeValueAsString(testFreezerWithID), result);
 	}
-	
+
 	@Test
 	public void testDeleteFreezer() throws Exception {
 		this.mock.perform(request(HttpMethod.DELETE, "/deleteFreezer/" + this.id)).andExpect(status().isOk());
@@ -94,12 +94,12 @@ public class FreezerControllerIntegerationTest {
 
 		assertEquals(this.mapper.writeValueAsString(freezerList), content);
 	}
-	
+
 	@Test
 	public void testFindFreezerByID() throws Exception {
 		this.mock.perform(request(HttpMethod.GET, "/getFreezer/" + this.id)).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	public void testAddItem() throws Exception {
 		Freezers testFreezerWithItems = testFreezerWithID;
@@ -112,7 +112,7 @@ public class FreezerControllerIntegerationTest {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertEquals(this.mapper.writeValueAsString(testFreezerWithItems), result);
 	}
-	
+
 	@Test
 	public void testGetItemsFromFreezer() throws Exception {
 
@@ -120,7 +120,7 @@ public class FreezerControllerIntegerationTest {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 
 		assertEquals(this.mapper.writeValueAsString(setItems), content);
-	
+
 	}
 
 }

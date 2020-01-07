@@ -26,6 +26,7 @@ public class Freezers {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "freezerId")
 	private Long id;
+	@Column(unique = true)
 	private String freezerName;
 
 	@OneToMany(fetch = FetchType.EAGER)

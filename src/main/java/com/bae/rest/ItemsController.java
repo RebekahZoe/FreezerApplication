@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.Items;
 import com.bae.service.ItemService;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RestController
@@ -34,6 +35,10 @@ private ItemService service;
 	@DeleteMapping("/deleteItem/{id}")
 	public void deleteItem(@PathVariable Long id) throws ItemDoesntexistException {
 		this.service.deleteItem(id); 
+	}
+	@DeleteMapping("/deleteItemByName/{name}")
+	public void deleteItem(@PathVariable String name) throws ItemDoesntexistException {
+		this.service.deleteItem(name);
 	}
 	
 	@GetMapping("/getItem/{id}")
