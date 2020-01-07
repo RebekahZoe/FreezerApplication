@@ -7,13 +7,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class FreezerApplication extends SpringBootServletInitializer {
-		 
-	    
-	 
+
+
+
 	    public static void main(String[] args) {
 	        SpringApplication.run(FreezerApplication.class, args);
 	    }
-	
+
 	}
 
 
