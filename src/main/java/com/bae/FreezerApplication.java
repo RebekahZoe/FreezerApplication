@@ -16,4 +16,4 @@ public class FreezerApplication extends SpringBootServletInitializer {
 	
 	}
 
-} 
+
