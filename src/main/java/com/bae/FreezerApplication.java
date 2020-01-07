@@ -6,12 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class FreezerApplication extends SpringBootServletInitializer {
+public class FreezerApplication  {
 		 
-	    @Override
-	    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	        return application.sources(FreezerApplication.class);
-	    }
+	    
 	 
 	    public static void main(String[] args) {
 	        SpringApplication.run(FreezerApplication.class, args);
