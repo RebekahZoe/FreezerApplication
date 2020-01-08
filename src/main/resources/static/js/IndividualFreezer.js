@@ -96,6 +96,8 @@ function createNewItem(){
             else{
                 alert(message);
             }
+            item.value = "";
+            quantity.value="";
         }
         
     }
@@ -161,6 +163,8 @@ function editItem(){
                 alert(message);
             }
         }
+        item.value = "";
+        quantity.value="";
         
     }
     else{
@@ -202,6 +206,7 @@ function deleteItem(){
                 
             }
         }
+        item.value="";
             
         }
         
