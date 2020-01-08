@@ -195,6 +195,10 @@ function deleteItem(){
                     console.log(response);
                     getItemsFromFreezer();
                 })
+                .catch((error)=>{
+                    console.error(error);
+                    getItemsFromFreezer();
+                })
                 
             }
         }
