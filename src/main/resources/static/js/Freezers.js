@@ -91,6 +91,7 @@ function deleteValidation(){
                 })
                 .catch(function (error) {
                 console.log(error);
+                alert(error);
                 getFreezers();
 
                 });
