@@ -55,6 +55,9 @@ private ItemService service;
 	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws ItemDoesntexistException {
 		return this.service.updateItem(item, id);
 	}
-	
+	@PutMapping("/updateItemByName/{name}")
+	public Items updateItem(@PathVariable("name") String name, @RequestBody Items item) throws ItemDoesntexistException {
+		return this.service.updateItem(item, name);
+	}
 	
 }

@@ -49,5 +49,7 @@ public class ItemService {
 		toUpdate.setQuantity(item.getQuantity());
 		return this.repo.save(toUpdate); 
 	}
-
+	public Items updateItem(Items item, String name) throws ItemDoesntexistException {
+		return this.updateItem(item, this.repo.findByItemName(name).getId()); 
+	}
 }

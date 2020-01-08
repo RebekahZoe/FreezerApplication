@@ -37,6 +37,10 @@ public class FreezerController {
 	public void deleteFreezer(@PathVariable Long id) throws FreezerDoesntexistException {
 		this.service.deleteFreezer(id);
 	}
+	@DeleteMapping("/deleteFreezerByName/{name}")
+	public void deleteFreezer(@PathVariable String name) throws FreezerDoesntexistException {
+		this.service.deleteFreezer(name);
+	}
 	
 	@GetMapping("/getFreezer/{id}")
 	public Freezers getFreezer(@PathVariable Long id) throws FreezerDoesntexistException {
