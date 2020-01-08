@@ -62,8 +62,8 @@ public class FreezerController {
 		return this.service.getItemsFromFreezer(id);
 	}
 	
-	@DeleteMapping("/deleteItemFromFreezerByName/{name}")
-	public void deleteItemFromFreezer(@PathVariable String name, @RequestBody Long id) throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException{
+	@DeleteMapping("/deleteItemFromFreezerByName/{name}/{id}")
+	public void deleteItemFromFreezer(@PathVariable("name") String name, @PathVariable("id") Long id) throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException{
 		this.service.deleteItemFromFreezer(name,id);
 	}
 

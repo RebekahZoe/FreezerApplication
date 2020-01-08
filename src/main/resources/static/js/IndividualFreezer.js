@@ -190,9 +190,7 @@ function deleteItem(){
         }
         else{ 
             if (confirm("Are you sure you want to delete this freezer?")){
-                axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item,{
-                    id:fId
-                })               
+                axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"/"+fId)               
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer();
