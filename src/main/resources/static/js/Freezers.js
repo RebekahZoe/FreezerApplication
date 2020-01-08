@@ -55,7 +55,7 @@ function createFreezer(){
               getFreezers();
               
         }
-        resetPlaceHolder(freezer,"Enter a freezer name");
+        document.getElementById("freezerNameAdd").value="";
     }
     else{
         alert("Please enter a valid freezer name");
@@ -95,7 +95,7 @@ function deleteValidation(){
                 getFreezers();
 
                 });
-                resetPlaceHolder(freezer,"Enter a freezer name");
+                document.getElementById("freezerNameDelete").value="";
             }
     }
 
@@ -105,8 +105,4 @@ function deleteValidation(){
     }
 }
 
-function resetPlaceHolder(inputBox,displayMessage){
-    if (inputBox.value == '') 
-    {inputBox.placeholder = displayMessage;
-}
-}
+
