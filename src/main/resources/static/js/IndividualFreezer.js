@@ -96,8 +96,8 @@ function createNewItem(){
             else{
                 alert(message);
             }
-            item.value = "";
-            quantity.value="";
+            document.getElementById("itemNameAdd").value = " ";
+            document.getElementById("quantityAdd").value=" ";
         }
         
     }
@@ -163,8 +163,8 @@ function editItem(){
                 alert(message);
             }
         }
-        item.value = "";
-        quantity.value="";
+        document.getElementById("itemNameEdit").value= " ";
+        document.getElementById("quantityEdit").value=" ";
         
     }
     else{
@@ -206,7 +206,7 @@ function deleteItem(){
                 
             }
         }
-        item.value="";
+        document.getElementById("itemNameDelete").value=" ";
             
         }
         
