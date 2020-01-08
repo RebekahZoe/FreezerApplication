@@ -90,14 +90,15 @@ function createNewItem(){
                     quantity : quantity
                 }).then(()=>{
                     getItemsFromFreezer();
+                    document.getElementById("itemNameAdd").value = " ";
+                    document.getElementById("quantityAdd").value=" ";
                 })
                 
             }
             else{
                 alert(message);
             }
-            document.getElementById("itemNameAdd").value = " ";
-            document.getElementById("quantityAdd").value=" ";
+            
         }
         
     }
@@ -156,6 +157,8 @@ function editItem(){
                     quantity : quantity
                 }).then(()=>{
                     getItemsFromFreezer();
+                    document.getElementById("itemNameEdit").value= " ";
+                    document.getElementById("quantityEdit").value=" ";
                 })
                 
             }
@@ -163,8 +166,7 @@ function editItem(){
                 alert(message);
             }
         }
-        document.getElementById("itemNameEdit").value= " ";
-        document.getElementById("quantityEdit").value=" ";
+        
         
     }
     else{
@@ -197,7 +199,8 @@ function deleteItem(){
                 axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"/"+fId)               
                 .then((response)=>{
                     console.log(response);
-                    getItemsFromFreezer();
+                    getItemsFromFreezer(); 
+                    document.getElementById("itemNameDelete").value=" ";
                 })
                 .catch((error)=>{
                     console.error(error);
@@ -206,7 +209,7 @@ function deleteItem(){
                 
             }
         }
-        document.getElementById("itemNameDelete").value=" ";
+       
             
         }
         
