@@ -15,6 +15,7 @@ import com.bae.persistence.repo.ItemsRepo;
 public class FreezerService {
 	
 	private FreezerRepo repo;
+	private ItemsRepo itemRepo;
 	
 	private ItemService itemService;
 	public FreezerService(FreezerRepo repo,ItemService itemService,ItemsRepo itemRepo) {
@@ -57,7 +58,15 @@ public class FreezerService {
 		Freezers toDisplay = findFreezerByID(id);
 		return toDisplay.getItems();
 	}
+	public boolean deleteItemFromFreezer(String name,Long id) throws ItemDoesntexistException, FreezerDoesntexistException {
+		Freezers currentFreezer = findFreezerByID(id);
+		Set<Items> itemSet = currentFreezer.getItems();
+		
+		currentFreezer.getItems().remove((this.itemRepo.findByItemName(name)));
+		this.itemService.deleteItem(this.itemRepo.findByItemName(name).getId());
+		return this.itemRepo.existsById(this.itemRepo.findByItemName(name).getId()); 
 	
+	}
 	
 
 }
