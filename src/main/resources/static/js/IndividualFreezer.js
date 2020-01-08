@@ -145,7 +145,7 @@ function editItem(){
         else if (item.length < 3){
             message = "Please enter a valid item name (must be greater than 3 characters)" + quantityValidation(quantity)
             alert(message);
-        }
+        } 
         else{
             message = quantityValidation(quantity);
             if (message === " "){
@@ -190,7 +190,7 @@ function deleteItem(){
         }
         else{ 
             if (confirm("Are you sure you want to delete this freezer?")){
-                axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item)               
+                axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"&"+fId)               
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer();
