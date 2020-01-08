@@ -58,13 +58,25 @@ public class FreezerService {
 		Freezers toDisplay = findFreezerByID(id);
 		return toDisplay.getItems();
 	}
-	public boolean deleteItemFromFreezer(String name,Long id) throws ItemDoesntexistException, FreezerDoesntexistException {
+	public boolean deleteItemFromFreezer(String name,Long id) throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException {
 		Freezers currentFreezer = findFreezerByID(id);
 		Set<Items> itemSet = currentFreezer.getItems();
+		boolean found = false;
+		for (Items items : itemSet) {
+			if (items.getItemName().equals(name)) {
+				found = true;
+			}
+		}
+		if (found == true) {
+			currentFreezer.getItems().remove((this.itemRepo.findByItemName(name)));
+			this.itemService.deleteItem(this.itemRepo.findByItemName(name).getId());
+			return this.itemRepo.existsById(this.itemRepo.findByItemName(name).getId()); 
+		}
+		else {
+			throw new ItemIsNotInFreezerException();
+		}
 		
-		currentFreezer.getItems().remove((this.itemRepo.findByItemName(name)));
-		this.itemService.deleteItem(this.itemRepo.findByItemName(name).getId());
-		return this.itemRepo.existsById(this.itemRepo.findByItemName(name).getId()); 
+		
 	
 	}
 	
