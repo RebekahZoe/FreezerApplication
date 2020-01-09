@@ -71,8 +71,8 @@ function createNewItem(){
     let hasNumber = /\d/;
     let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    let item = document.getElementById("itemNameAdd").value.toLowerCase();
-    let  quantity = document.getElementById("quantityAdd").value.toLowerCase();
+    let item = document.getElementById("itemNameAdd").value.toLowerCase().trim();
+    let  quantity = document.getElementById("quantityAdd").value.trim();
     let message;
     
     if(item !== "" && quantity !==""){
@@ -137,8 +137,8 @@ function editItem(){
     let hasNumber = /\d/;
     let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    let item = document.getElementById("itemNameEdit").value.toLowerCase();
-    let quantity = document.getElementById("quantityEdit").value.toLowerCase();
+    let item = document.getElementById("itemNameEdit").value.toLowerCase().trim();
+    let quantity = document.getElementById("quantityEdit").value.trim();
     let message;
     
     if(item !== "" && quantity !==""){
@@ -180,7 +180,7 @@ function deleteItem(){
     let hasNumber = /\d/;
     let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    let item = document.getElementById("itemNameDelete").value.toLowerCase();
+    let item = document.getElementById("itemNameDelete").value.toLowerCase().trim();
     let message;
     
     if(item !== ""){
