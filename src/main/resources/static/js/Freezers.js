@@ -38,7 +38,7 @@ function createFreezer(){
             alert("Please enter a valid freezer name (No special characters)");
         }
         else if (freezer.length < 6){
-            alert("Please enter a valid freezer name (must be greater than 6 characters)");
+            alert("Please enter a valid freezer name of 6 characters or more)");
         }
         else{
             console.log(freezer);
@@ -78,7 +78,7 @@ function deleteValidation(){
             alert("Please enter a valid freezer name (No special characters)");
         }
         else if (freezer.length < 6){
-            alert("Please enter a valid freezer name (must be greater than 6 characters)");
+            alert("Please enter a valid freezer name of 6 characters or more");
         }
         else{
             console.log(freezer);
@@ -92,7 +92,7 @@ function deleteValidation(){
                 })
                 .catch(function (error) {
                 console.log(error);
-                alert("error");
+                alert("Freezer name is not in the list");
                 getFreezers();
 
                 });

@@ -67,64 +67,67 @@ for (let item of items){
 }
 
 function createNewItem(){
-    
-    let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameAdd").value.toLowerCase().trim();
     let  quantity = document.getElementById("quantityAdd").value.trim();
-    let message;
-    
     if(item !== "" && quantity !==""){
-        if (hasNumber.test(item)){
-            message = "Please enter a valid item name (No numbers)" + quantityValidation(quantity);
-            alert(message);
-        } 
-        else if (format.test(item)){
-            message = "Please enter a valid item name (No special characters (& is allowed))" + quantityValidation(quantity);
-            alert(message);
-        }
-        else if (item.length < 3){
-            message = "Please enter a valid item name (must be greater than 3 characters)" + quantityValidation(quantity)
-            alert(message);
-        }
-        else{
-            message = quantityValidation(quantity);
-            if (message === " "){
-                axios.patch("http://localhost:8080/addItem/"+fId,{
+        if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
+            axios.patch("http://localhost:8080/addItem/"+fId,{
                     itemName : item,
                     quantity : quantity
                 }).then(()=>{
                     getItemsFromFreezer();
                     location.reload();
                 })
-                
+        }
+            else if (itemNameValidation(item) == " " && quantityValidation(quantity) !== " "){
+                alert("Please enter a "+quantityValidation(quantity));
+            }
+            else if (itemNameValidation(item) !== " " && quantityValidation(quantity) == " ") {
+                alert(itemNameValidation(item));
             }
             else{
-                alert(message);
+                alert(itemNameValidation(item)+" and "+ quantityValidation(quantity));
             }
-            
         }
-        
-    }
     else{
         alert("Please enter a valid item name and quantity");
     }
 
 
 }
+function itemNameValidation(item){
+    let hasNumber = /\d/;
+    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (hasNumber.test(item)){
+        return "Please enter a valid item name (No numbers)";
+    }
+    else if (format.test(item)){
+        return "Please enter a valid item name (No special characters, & is allowed)";
+    }
+    else if (item.length < 3){
+        return "Please enter a valid item name (must be at least 3 characters)";
+    }
+    else{
+        return " ";
+    }
 
+}
 function quantityValidation(quantity){
     let letters = /^[A-Za-z]+$/;
-    let format = /[!@#$%&^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!@#$%&^*()_+\-=\[\]{};':"\\|,<>\/?]+/;
+    let decimal =".";
     if (letters.test(quantity)){
-        return " Please enter a valid quantity (no letters)"
+        return "a valid quantity (no letters)"
     }
     else if (format.test(quantity)){
-        return " Please enter a valid quantity (no special characters)"
+        return "a valid quantity (no special characters)"
     }
     else if (quantity === "0"){
-        return " Please enter a valid quantity (quantity must be greater than 0)"
+        return "a valid quantity (must be greater than 0)"
+    }
+    else if (quantity.includes(decimal)){
+        return "a valid quantity (must be a whole number)"
     }
     else{
         return " "
@@ -133,30 +136,12 @@ function quantityValidation(quantity){
 
 }
 function editItem(){
-    
-    let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameEdit").value.toLowerCase().trim();
     let quantity = document.getElementById("quantityEdit").value.trim();
-    let message;
     
     if(item !== "" && quantity !==""){
-        if (hasNumber.test(item)){
-            message = "Please enter a valid item name (No numbers)" + quantityValidation(quantity);
-            alert(message);
-        } 
-        else if (format.test(item)){
-            message = "Please enter a valid item name (No special characters (& is allowed))" + quantityValidation(quantity);
-            alert(message);
-        }
-        else if (item.length < 3){
-            message = "Please enter a valid item name (must be greater than 3 characters)" + quantityValidation(quantity)
-            alert(message);
-        } 
-        else{
-            message = quantityValidation(quantity);
-            if (message === " "){
+        if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
                 axios.put("http://localhost:8080/updateItemByName/"+item,{
                     itemName : item,
                     quantity : quantity
@@ -164,39 +149,34 @@ function editItem(){
                     getItemsFromFreezer();
                     location.reload();
                 })
-                
+                .catch(function (error) {
+                    console.log(error);
+                    alert("Item is not in this freezer");
+                });
+            }
+    
+            else if (itemNameValidation(item) == " " && quantityValidation(quantity) !== " "){
+                alert("Please enter a "+quantityValidation(quantity));
+            }
+            else if (itemNameValidation(item) !== " " && quantityValidation(quantity) == " ") {
+                alert(itemNameValidation(item));
             }
             else{
-                alert(message);
+                alert(itemNameValidation(item)+" and "+ quantityValidation(quantity));
             }
-        }
-        
-        
-    }location.reload();
+    }
+    else{
+        alert("Please enter a valid item name and quantity")
+    } 
 
 }
 
 function deleteItem(){
-    let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameDelete").value.toLowerCase().trim();
-    let message;
     
     if(item !== ""){
-        if (hasNumber.test(item)){
-            message = "Please enter a valid item name (No numbers)";
-            alert(message);
-        } 
-        else if (format.test(item)){
-            message = "Please enter a valid item name (No special characters (& is allowed))";
-            alert(message);
-        }
-        else if (item.length < 3){
-            message = "Please enter a valid item name (must be greater than 3 characters)"; 
-            alert(message);
-        }
-        else{ 
+        if(itemNameValidation(item)== " "){
             if (confirm("Are you sure you want to delete this item?")){
                 axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"/"+fId)               
                 .then((response)=>{
@@ -204,15 +184,17 @@ function deleteItem(){
                     getItemsFromFreezer(); 
                     
                 })
-                .catch((error)=>{
-                    console.error(error);
-                    getItemsFromFreezer();
-                })
+                .catch(function (error) {
+                    console.log(error);
+                    alert("Item is not in this freezer");
+                });
                 
             }
-        }
-       
             location.reload();
+        }
+        else {
+            alert(itemNameValidation(item));
+        }   
         }
         
     
