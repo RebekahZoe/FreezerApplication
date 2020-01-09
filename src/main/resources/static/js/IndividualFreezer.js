@@ -90,8 +90,7 @@ function createNewItem(){
                     quantity : quantity
                 }).then(()=>{
                     getItemsFromFreezer();
-                    document.getElementById("itemNameAdd").value = " ";
-                    document.getElementById("quantityAdd").value=" ";
+                    location.reload();
                 })
                 
             }
@@ -157,8 +156,7 @@ function editItem(){
                     quantity : quantity
                 }).then(()=>{
                     getItemsFromFreezer();
-                    document.getElementById("itemNameEdit").value= " ";
-                    document.getElementById("quantityEdit").value=" ";
+                    location.reload();
                 })
                 
             }
@@ -168,13 +166,7 @@ function editItem(){
         }
         
         
-    }
-    else{
-        alert("Please enter a valid item name and quantity");
-    }
-}
-
-function deleteItem(){
+    }location.reload();
     var hasNumber = /\d/;
     var format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
@@ -195,12 +187,12 @@ function deleteItem(){
             alert(message);
         }
         else{ 
-            if (confirm("Are you sure you want to delete this freezer?")){
+            if (confirm("Are you sure you want to delete this item?")){
                 axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"/"+fId)               
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer(); 
-                    document.getElementById("itemNameDelete").value=" ";
+                    location.reload();
                 })
                 .catch((error)=>{
                     console.error(error);

@@ -48,6 +48,7 @@ function createFreezer(){
             .then(function (response) {
                 console.log(response);
                 getFreezers();
+                location.reload();
               })
               .catch(function (error) {
                 console.log(error);
@@ -55,7 +56,6 @@ function createFreezer(){
               getFreezers();
               
         }
-        document.getElementById("freezerNameAdd").value="";
     }
     else{
         alert("Please enter a valid freezer name");
@@ -85,9 +85,7 @@ function deleteValidation(){
             if (confirm("Are you sure you want to delete this freezer?")){
                 axios.delete("http://localhost:8080/deleteFreezerByName/"+freezer)
                 .then((response)=>{
-                console.log(response);
-                getFreezers();
-
+                    document.getElementById("freezerNameDelete").value="";
                 })
                 .catch(function (error) {
                 console.log(error);
@@ -95,7 +93,6 @@ function deleteValidation(){
                 getFreezers();
 
                 });
-                document.getElementById("freezerNameDelete").value="";
             }
     }
 
