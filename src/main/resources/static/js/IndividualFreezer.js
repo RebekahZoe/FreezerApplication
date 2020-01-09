@@ -171,7 +171,7 @@ function editItem(){
     var hasNumber = /\d/;
     var format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    const item = document.getElementById("itemNameDelete").value;
+    var item = document.getElementById("itemNameDelete").value;
     var message;
     
     if(item !== ""){
