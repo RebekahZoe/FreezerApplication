@@ -85,7 +85,10 @@ function deleteValidation(){
             if (confirm("Are you sure you want to delete this freezer?")){
                 axios.delete("http://localhost:8080/deleteFreezerByName/"+freezer)
                 .then((response)=>{
-                    document.getElementById("freezerNameDelete").value="";
+                    getFreezers();
+                    console.log(response);
+                    location.reload();
+                    
                 })
                 .catch(function (error) {
                 console.log(error);
