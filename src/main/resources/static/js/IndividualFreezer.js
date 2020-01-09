@@ -1,24 +1,24 @@
 "use strict";
 function getQueryVariable(variable)
 {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
+       let query = window.location.search.substring(1);
+       let vars = query.split("&");
+       for (let i=0;i<vars.length;i++) {
+               let pair = vars[i].split("=");
                if(pair[0] == variable){return pair[1];}
        }
        return(false);
 }
 
 function setTitle(){
-    var title = document.getElementById("freezerName");
-    var newTitle = document.createElement("h1");
-    var titleText = getQueryVariable("name");
+    let title = document.getElementById("freezerName");
+    let newTitle = document.createElement("h1");
+    let titleText = getQueryVariable("name");
     newTitle.innerHTML = decodeURI(titleText);
     title.appendChild(newTitle);
 
 }
-var fId = getQueryVariable("id");
+let fId = getQueryVariable("id");
 
 function getItemsFromFreezer(){
     console.log("bloop");
@@ -37,8 +37,8 @@ const itemList = document.getElementById("itemsInFreezer");
 function showItemsFromFreezer(items){
     itemList.innerHTML = " ";
     headerRow.innerHTML =" ";
-    var itemHeader = document.createElement("th");
-    var quantityHeader = document.createElement("th");
+    let itemHeader = document.createElement("th");
+    let quantityHeader = document.createElement("th");
 
     itemHeader.innerHTML = "Items";
     quantityHeader.innerHTML = "Quantity";
@@ -49,9 +49,9 @@ function showItemsFromFreezer(items){
 
     console.log(items);
 for (let item of items){
-    var newRow= document.createElement("tr");
-    var newItem = document.createElement("td");
-    var newQuantity = document.createElement("td");
+    let newRow= document.createElement("tr");
+    let newItem = document.createElement("td");
+    let newQuantity = document.createElement("td");
     newItem.innerHTML = item.itemName;
     newQuantity.innerHTML = item.quantity;
     newRow.appendChild(newItem);
@@ -63,12 +63,12 @@ for (let item of items){
 
 function createNewItem(){
     
-    var hasNumber = /\d/;
-    var format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let hasNumber = /\d/;
+    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameAdd").value;
     let  quantity = document.getElementById("quantityAdd").value;
-    var message;
+    let message;
     
     if(item !== "" && quantity !==""){
         if (hasNumber.test(item)){
@@ -110,8 +110,8 @@ function createNewItem(){
 }
 
 function quantityValidation(quantity){
-    var letters = /^[A-Za-z]+$/;
-    var format = /[!@#$%&^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let letters = /^[A-Za-z]+$/;
+    let format = /[!@#$%&^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if (letters.test(quantity)){
         return " Please enter a valid quantity (no letters)"
     }
@@ -129,12 +129,12 @@ function quantityValidation(quantity){
 }
 function editItem(){
     
-    var hasNumber = /\d/;
-    var format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let hasNumber = /\d/;
+    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameEdit").value;
     let quantity = document.getElementById("quantityEdit").value;
-    var message;
+    let message;
     
     if(item !== "" && quantity !==""){
         if (hasNumber.test(item)){
@@ -172,11 +172,11 @@ function editItem(){
 }
 
 function deleteItem(){
-    var hasNumber = /\d/;
-    var format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let hasNumber = /\d/;
+    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     let item = document.getElementById("itemNameDelete").value;
-    var message;
+    let message;
     
     if(item !== ""){
         if (hasNumber.test(item)){
@@ -197,7 +197,7 @@ function deleteItem(){
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer(); 
-                    location.reload();
+                    
                 })
                 .catch((error)=>{
                     console.error(error);
@@ -207,7 +207,7 @@ function deleteItem(){
             }
         }
        
-            
+            location.reload();
         }
         
     
