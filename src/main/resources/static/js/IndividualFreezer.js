@@ -9,12 +9,17 @@ function getQueryVariable(variable)
        }
        return(false);
 }
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 
 function setTitle(){
     let title = document.getElementById("freezerName");
     let newTitle = document.createElement("h1");
     let titleText = getQueryVariable("name");
-    newTitle.innerHTML = decodeURI(titleText);
+    newTitle.innerHTML = toTitleCase(decodeURI(titleText));
     title.appendChild(newTitle);
 
 }
