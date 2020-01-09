@@ -29,7 +29,7 @@ function createFreezer(){
     var hasNumber = /\d/;
     var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    const freezer = document.getElementById("freezerNameAdd").value.toLowerCase();
+    const freezer = document.getElementById("freezerNameAdd").value.toLowerCase().trim();
     if(freezer !== ""){
         if (hasNumber.test(freezer)){
             alert("Please enter a valid freezer name (No numbers)");
@@ -66,7 +66,7 @@ function createFreezer(){
 
 
 function deleteValidation(){
-    const freezer = document.getElementById("freezerNameDelete").value.toLowerCase;
+    const freezer = document.getElementById("freezerNameDelete").value.toLowerCase().trim();
     var hasNumber = /\d/;
     var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if(freezer !== ""){
