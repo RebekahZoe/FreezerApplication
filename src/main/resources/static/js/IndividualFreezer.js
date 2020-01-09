@@ -9,15 +9,16 @@ function getQueryVariable(variable)
        }
        return(false);
 }
+const urlParams = new URLSearchParams(window.location.search);
 function setTitle(){
     var title = document.getElementById("freezerName");
     var newTitle = document.createElement("h1");
-    var titleText = getQueryVariable("name");
+    var titleText = urlParams.get('name');
     newTitle.innerHTML = decodeURI(titleText);
     title.appendChild(newTitle);
 
 }
-var fId = getQueryVariable("id");
+var fId = urlParams.get('id');
 
 function getItemsFromFreezer(){
     console.log("bloop");
