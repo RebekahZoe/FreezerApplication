@@ -1,7 +1,7 @@
 "use strict";
 
 function getFreezers(){
-    axios.get('/getAllFreezers')
+    axios.get('/FreezerApplication/getAllFreezers')
     .then((response)=>{
         showFreezers(response.data);
         console.log(response.data);
@@ -42,7 +42,7 @@ function createFreezer(){
         }
         else{
             console.log(freezer);
-            axios.post('/createFreezer',{
+            axios.post('/FreezerApplication/createFreezer',{
                 freezerName : freezer
             })
             .then(function (response) {
@@ -83,7 +83,7 @@ function deleteValidation(){
         else{
             console.log(freezer);
             if (confirm("Are you sure you want to delete this freezer?")){
-                axios.delete("/deleteFreezerByName/"+freezer)
+                axios.delete("/FreezerApplication/deleteFreezerByName/"+freezer)
                 .then((response)=>{
                     getFreezers();
                     console.log(response);
