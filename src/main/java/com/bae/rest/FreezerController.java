@@ -16,6 +16,8 @@ import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.domain.Items;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
+import com.bae.service.ItemDoesntexistException;
+import com.bae.service.ItemIsNotInFreezerException;
 
 @RestController
 public class FreezerController {
@@ -58,6 +60,11 @@ public class FreezerController {
 	@GetMapping("/getItemsFromFreezer/{id}")
 	public Set<Items> getItemsFromFreezer(@PathVariable Long id) throws FreezerDoesntexistException{
 		return this.service.getItemsFromFreezer(id);
+	}
+	
+	@DeleteMapping("/deleteItemFromFreezerByName/{name}/{id}")
+	public void deleteItemFromFreezer(@PathVariable("name") String name, @PathVariable("id") Long id) throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException{
+		this.service.deleteItemFromFreezer(name,id);
 	}
 
 }
