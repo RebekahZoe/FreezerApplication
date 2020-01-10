@@ -58,7 +58,7 @@ public class FreezerServiceIntegrationTest {
 
 	}
 
-	@Test
+	@Test 
 	public void testCreateFreezer() {
 		assertEquals(this.testFreezerWithID, this.service.createFreezer(testFreezer));
 	}

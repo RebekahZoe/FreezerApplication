@@ -27,7 +27,7 @@ let fId = getQueryVariable("id");
 
 function getItemsFromFreezer(){
     console.log("bloop");
-   axios.get("http://localhost:8080/getItemsFromFreezer/"+fId)
+   axios.get("/getItemsFromFreezer/"+fId)
    .then((response)=>{
         showItemsFromFreezer(response.data);
         console.log(response);
@@ -72,7 +72,7 @@ function createNewItem(){
     let  quantity = document.getElementById("quantityAdd").value.trim();
     if(item !== "" && quantity !==""){
         if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
-            axios.patch("http://localhost:8080/addItem/"+fId,{
+            axios.patch("/addItem/"+fId,{
                     itemName : item,
                     quantity : quantity
                 }).then(()=>{
@@ -142,7 +142,7 @@ function editItem(){
     
     if(item !== "" && quantity !==""){
         if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
-                axios.put("http://localhost:8080/updateItemByName/"+item,{
+                axios.put("/updateItemByName/"+item,{
                     itemName : item,
                     quantity : quantity
                 }).then(()=>{
@@ -178,7 +178,7 @@ function deleteItem(){
     if(item !== ""){
         if(itemNameValidation(item)== " "){
             if (confirm("Are you sure you want to delete this item?")){
-                axios.delete("http://localhost:8080/deleteItemFromFreezerByName/"+item+"/"+fId)               
+                axios.delete("/deleteItemFromFreezerByName/"+item+"/"+fId)               
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer(); 
