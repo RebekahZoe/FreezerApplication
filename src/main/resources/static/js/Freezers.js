@@ -27,7 +27,7 @@ function redirect(name,id){
 
 function createFreezer(){
     var hasNumber = /\d/;
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    var format = /[!@£#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     const freezer = document.getElementById("freezerNameAdd").value.toLowerCase().trim();
     if(freezer !== ""){

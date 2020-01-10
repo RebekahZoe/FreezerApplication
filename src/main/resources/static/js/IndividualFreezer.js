@@ -26,7 +26,6 @@ function setTitle(){
 let fId = getQueryVariable("id");
 
 function getItemsFromFreezer(){
-    console.log("bloop");
    axios.get("http://localhost:8080/getItemsFromFreezer/"+fId)
    .then((response)=>{
         showItemsFromFreezer(response.data);
@@ -98,7 +97,7 @@ function createNewItem(){
 }
 function itemNameValidation(item){
     let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!@#$%£^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if (hasNumber.test(item)){
         return "Please enter a valid item name (No numbers)";
     }
