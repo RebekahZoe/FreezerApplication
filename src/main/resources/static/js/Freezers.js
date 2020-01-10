@@ -15,6 +15,10 @@ function showFreezers(freezer){
 freezerList.innerHTML="";
 for (let f of freezer){
     const newFreezer = document.createElement("li");
+
+    var att = document.createAttribute("id");       // Create a "class" attribute
+    att.value = "1"; 
+    newFreezer.setAttribute(att);
     newFreezer.innerHTML = f.freezerName;
 
     freezerList.appendChild(newFreezer);
