@@ -34,7 +34,7 @@ public class FreezerPageFunctionalityTest {
 	@Test
 	public void test() throws InterruptedException {
 		this.driver.manage().window().fullscreen();
-		this.driver.get("http://localhost:8080/Freezer.html");
+		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
 		freezerPage.emptyFreezer();
