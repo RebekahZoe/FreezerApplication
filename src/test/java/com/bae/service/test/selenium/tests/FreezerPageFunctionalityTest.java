@@ -49,33 +49,27 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
-		System.out.println("2");
 		
 		freezerPage.createFreezer(specialCharacterInput);
 		String alert2 = this.driver.switchTo().alert().getText();
-		System.out.println(alert2);
 		assertEquals("Please enter a valid freezer name (No special characters)",alert2);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
-		System.out.println("3");
 		
 		freezerPage.createFreezer(shortCharacterCount);
 		String alert3 = this.driver.switchTo().alert().getText();
-		System.out.println(alert3);
 		assertEquals("Please enter a valid freezer name of 6 characters or more",alert3);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
-		System.out.println("4");
 		
 		freezerPage.createFreezer("");
 		String alert4 = this.driver.switchTo().alert().getText();
-//		assertEquals("Please enter a valid freezer name",alert4);
+		assertEquals("Please enter a valid freezer name",alert4);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
-		System.out.println("5");
 		
 		
 		
