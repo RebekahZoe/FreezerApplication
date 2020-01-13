@@ -42,6 +42,7 @@ public class FreezerPageFunctionalityTest {
 		Thread.sleep(2000);
 		freezerPage.hasFreezerBeenAdded();
 		assertEquals(freezerPage.hasFreezerBeenAddedCorrectly(),validInput);
+		System.out.println("1");
 		
 		freezerPage.createFreezer(numberInput);
 		alert = this.driver.switchTo().alert().getText();
@@ -49,6 +50,7 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
+		System.out.println("2");
 		
 		freezerPage.createFreezer(specialCharacterInput);
 		Thread.sleep(1000);
@@ -57,6 +59,7 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
+		System.out.println("3");
 		
 		freezerPage.createFreezer(shortCharacterCount);
 		alert = this.driver.switchTo().alert().getText();
@@ -64,6 +67,7 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
+		System.out.println("4");
 		
 		freezerPage.createFreezer("");
 		alert = this.driver.switchTo().alert().getText();
@@ -71,6 +75,7 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
+		System.out.println("5");
 		
 		
 		
