@@ -46,10 +46,10 @@ public class NavigationTest {
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
 		freezerPage.clickFreezerApp();
 		assertEquals(driver.getCurrentUrl(),"http://35.176.212.133:8181/FreezerApplication/index.html");
-		this.driver.get("http://localhost:8080/Freezer.html");
+		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		freezerPage.clickHome();
 		assertEquals(driver.getCurrentUrl(),"http://35.176.212.133:8181/FreezerApplication/index.html");
-		this.driver.get("http://localhost:8080/Freezer.html");
+		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		freezerPage.clickGitHub();
 		assertEquals(driver.getCurrentUrl(),"https://github.com/RebekahZoe/FreezerApplication");
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
