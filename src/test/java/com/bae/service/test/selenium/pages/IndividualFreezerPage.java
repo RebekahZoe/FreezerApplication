@@ -30,5 +30,107 @@ public class IndividualFreezerPage {
 		this.freezerAppNav.click();
 		
 	}
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[1]/div/form/div/input[1]")
+	private WebElement itemAddInput;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[1]/div/form/div/input[2]")
+	private WebElement quantityAddInput;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[1]/div/form/div/button")
+	private WebElement AddButton;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[2]/div/form/div/input[1]")
+	private WebElement itemEditInput;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[2]/div/form/div/input[2]")
+	private WebElement quantityEditInput;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[2]/div/form/div/button")
+	private WebElement editButton;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[3]/div[3]/div/form/div/input")
+	private WebElement itemDeleteInput;
+	
+	@FindBy(xpath = "//*[@id=\"delete\"]/div/form/button")
+	private WebElement deleteButton;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[2]/table/tr[2]/td[1]")
+	private WebElement itemInList;
+	
+	@FindBy(xpath = "/html/body/div/div/div/div[2]/table/tr[2]/td[2]")
+	private WebElement quantityInList;
+	
+	@FindBy(xpath = "/html/body/header/div[2]/div/div/div/h1")
+	private WebElement title;
+	
+	public void createItem(String name, String quantity) {
+		this.itemAddInput.sendKeys(name);
+		this.quantityAddInput.sendKeys(quantity);
+		this.AddButton.click();
+	}
+	
+	public void editItem(String name, String quantity) {
+		this.itemEditInput.sendKeys(name);
+		this.quantityEditInput.sendKeys(quantity);
+		this.editButton.click();
+	}
+	
+	public void deleteItem(String name) {
+		this.itemDeleteInput.sendKeys(name);
+		this.deleteButton.click();
+	}
+	
+	public boolean noItems() {
+		try {
+			itemInList.isDisplayed();
+			quantityInList.isDisplayed();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean hasItemBeenAdded(){
+		try {
+			itemInList.isDisplayed();
+			quantityInList.isDisplayed();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public String hasItemBeenAddedCorrectly() {
+		return (this.itemInList.getText() + this.quantityInList.getText());
+	}
+	
+	public boolean hasBeenDeletedCorrectly() {
+		try {
+			itemInList.isDisplayed();
+			quantityInList.isDisplayed();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public String getTitle() {
+		return this.title.getText();
+	}
+	
+	public void clearAddInput() {
+		this.itemAddInput.clear();
+		this.quantityAddInput.clear();
+	}
+	
+	public void clearEditInput() {
+		this.itemEditInput.clear();
+		this.quantityEditInput.clear();
+	}
+	
+	public void clearDeleteInput() {
+		this.itemDeleteInput.clear();
+	}
 
 }

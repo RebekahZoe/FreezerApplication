@@ -37,7 +37,7 @@ public class FreezerPageFunctionalityTest {
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
 		assertFalse(freezerPage.emptyFreezer());
-		freezerPage.createFreezer(validInput);
+		freezerPage.createFreezer(validInput); 
 		Thread.sleep(2000);
 		assertTrue(freezerPage.hasFreezerBeenAdded());
 		assertEquals(freezerPage.hasFreezerBeenAddedCorrectly(),validInput);
