@@ -2,6 +2,7 @@ package com.bae.service.test.selenium.pages;
 
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -49,7 +50,7 @@ public class FreezerPage {
 	private WebElement freezer;
 	
 	@FindBy(xpath = "/html/body/div/div/div/div[2]/ul")
-	private WebElement emptyFreezers;
+	private WebElement freezers;
 	
 	public void createFreezer(String name) {
 		this.addInput.sendKeys(name);
@@ -67,16 +68,32 @@ public class FreezerPage {
 	}
 	
 	public boolean emptyFreezer() {
-		return this.emptyFreezers.isDisplayed();
+		try {
+			freezer.isDisplayed();
+			return true;
+			} catch (Exception e) {
+			return false;
+			}
 	}
+	
 	public boolean hasFreezerBeenAdded() {
-		return this.freezer.isDisplayed();
+		try {
+			freezer.isDisplayed();
+			return true;
+			} catch (Exception e) {
+			return false;
+			}
 	}
 	public String hasFreezerBeenAddedCorrectly() {
 		return this.freezer.getText();
 	}
 	public boolean hasBeenDeletedCorrectly() {
-		return this.freezer.isDisplayed();
+		try {
+			freezer.isDisplayed();
+			return true;
+			} catch (Exception e) {
+			return false;
+			}
 	}
 	public void clearAddInput() {
 		this.addInput.clear();

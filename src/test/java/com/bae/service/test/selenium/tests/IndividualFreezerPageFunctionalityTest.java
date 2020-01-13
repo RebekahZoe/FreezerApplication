@@ -5,22 +5,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.bae.service.test.selenium.constants.Constants;
 import com.bae.service.test.selenium.pages.FreezerPage;
-import com.bae.service.test.selenium.pages.IndexPage;
-import com.bae.service.test.selenium.pages.IndividualFreezerPage;
 
-public class FreezerPageFunctionalityTest {
+public class IndividualFreezerPageFunctionalityTest {
 
-	private WebDriver driver;
+private WebDriver driver;
 	
-	private String validInput = "garage freezer";
-	private String numberInput = "34";
+	private String validNameInput = "curry";
+	private String numberInput = "3";
 	private String specialCharacterInput = "£";
 	private String shortCharacterCount = "hello";
 
@@ -125,5 +123,4 @@ public class FreezerPageFunctionalityTest {
 	public void tearDown() {
 		this.driver.close();
 	}
-
 }
