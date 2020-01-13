@@ -98,7 +98,7 @@ function createNewItem(){
 }
 function itemNameValidation(item){
     let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!@#$%^*()_+\-=£\[\]{};':"\\|,.<>\/?]+/;
     if (hasNumber.test(item)){
         return "Please enter a valid item name (No numbers)";
     }
@@ -115,7 +115,7 @@ function itemNameValidation(item){
 }
 function quantityValidation(quantity){
     let letters = /^[A-Za-z]+$/;
-    let format = /[!@#$%&^*()_+\-=\[\]{};':"\\|,<>\/?]+/;
+    let format = /[!@#$%&^*(£)_+\-=\[\]{};':"\\|,<>\/?]+/;
     let decimal =".";
     if (letters.test(quantity)){
         return "a valid quantity (no letters)"

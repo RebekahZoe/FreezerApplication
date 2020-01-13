@@ -27,7 +27,7 @@ function redirect(name,id){
 
 function createFreezer(){
     var hasNumber = /\d/;
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    var format = /[!@#$£%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     const freezer = document.getElementById("freezerNameAdd").value.toLowerCase().trim();
     if(freezer !== ""){
@@ -68,7 +68,7 @@ function createFreezer(){
 function deleteValidation(){
     const freezer = document.getElementById("freezerNameDelete").value.toLowerCase().trim();
     var hasNumber = /\d/;
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    var format = /[!@#$%^£&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if(freezer !== ""){
         console.log(freezer);
         if (hasNumber.test(freezer)){
