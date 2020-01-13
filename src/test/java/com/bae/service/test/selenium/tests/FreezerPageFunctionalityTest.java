@@ -36,12 +36,11 @@ public class FreezerPageFunctionalityTest {
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
-		freezerPage.emptyFreezer();
+		assertTrue(freezerPage.emptyFreezer());
 		freezerPage.createFreezer(validInput);
 		Thread.sleep(2000);
-		freezerPage.hasFreezerBeenAdded();
+		assertTrue(freezerPage.hasFreezerBeenAdded());
 		assertEquals(freezerPage.hasFreezerBeenAddedCorrectly(),validInput);
-		System.out.println("1");
 		
 		freezerPage.createFreezer(numberInput);
 		String alert = this.driver.switchTo().alert().getText();
@@ -71,7 +70,16 @@ public class FreezerPageFunctionalityTest {
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
 		
+		freezerPage.deleteFreezer(validInput);
+		this.driver.switchTo().alert().dismiss();
+		assertEquals(freezerPage.hasFreezerBeenAddedCorrectly(),validInput);
+		freezerPage.clearDeleteInput();
+		System.out.println("1");
 		
+		freezerPage.deleteFreezer(validInput);
+		this.driver.switchTo().alert().accept();
+		
+		System.out.println("2");
 		
 	}
 	

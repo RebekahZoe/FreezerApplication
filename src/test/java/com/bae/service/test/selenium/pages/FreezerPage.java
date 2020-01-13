@@ -66,14 +66,17 @@ public class FreezerPage {
 		this.freezer.click();
 	}
 	
-	public void emptyFreezer() {
-		this.emptyFreezers.isDisplayed();
+	public boolean emptyFreezer() {
+		return this.emptyFreezers.isDisplayed();
 	}
-	public void hasFreezerBeenAdded() {
-		this.freezer.isDisplayed();
+	public boolean hasFreezerBeenAdded() {
+		return this.freezer.isDisplayed();
 	}
 	public String hasFreezerBeenAddedCorrectly() {
 		return this.freezer.getText();
+	}
+	public boolean hasBeenDeletedCorrectly() {
+		return this.freezer.isDisplayed();
 	}
 	public void clearAddInput() {
 		this.addInput.clear();
@@ -81,5 +84,7 @@ public class FreezerPage {
 	public void clearDeleteInput() {
 		this.deleteInput.clear();
 	}
+	
+	
 
 }
