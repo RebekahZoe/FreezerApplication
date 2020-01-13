@@ -38,7 +38,7 @@ function createFreezer(){
             alert("Please enter a valid freezer name (No special characters)");
         }
         else if (freezer.length < 6){
-            alert("Please enter a valid freezer name of 6 characters or more)");
+            alert("Please enter a valid freezer name of 6 characters or more");
         }
         else{
             console.log(freezer);
