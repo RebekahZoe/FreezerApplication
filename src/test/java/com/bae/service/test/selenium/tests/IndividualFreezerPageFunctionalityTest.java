@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -44,7 +45,7 @@ private WebDriver driver;
 	
 	@Test
 	public void test() throws InterruptedException {
-		this.driver.manage().window().fullscreen();
+		this.driver.manage().window().setSize(new Dimension(1600,700));
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
