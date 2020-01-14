@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 
 import com.bae.service.test.selenium.constants.Constants;
@@ -34,7 +35,9 @@ private WebDriver driver;
 	@Before
 	public void setup() {
 		System.setProperty(Constants.PROPERTY, Constants.PATH);
-		driver = new ChromeDriver();
+		ChromeOptions opt = new ChromeOptions();
+		opt.setHeadless(true);
+		driver = new ChromeDriver(opt);
 	}
 	
 	@Test
