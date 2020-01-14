@@ -12,8 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.bae.service.test.selenium.constants.Constants;
 import com.bae.service.test.selenium.pages.FreezerPage;
-import com.bae.service.test.selenium.pages.IndexPage;
-import com.bae.service.test.selenium.pages.IndividualFreezerPage;
 
 public class FreezerPageFunctionalityTest {
 
@@ -123,6 +121,7 @@ public class FreezerPageFunctionalityTest {
 	
 	@After
 	public void tearDown() {
+		
 		this.driver.close();
 	}
 

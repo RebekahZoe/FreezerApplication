@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.FetchType;
-
 import org.assertj.core.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +19,6 @@ import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
-import com.bae.service.ItemService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -11,4 +11,3 @@ public interface FreezerRepo extends JpaRepository<Freezers, Long> {
 
 	Freezers findByFreezerName(String name);
 }
-

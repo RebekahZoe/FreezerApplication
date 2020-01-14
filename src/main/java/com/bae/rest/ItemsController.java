@@ -13,20 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.Items;
 import com.bae.service.ItemService;
-import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RestController
 public class ItemsController {
-	
-private ItemService service;
+
+	private ItemService service;
 
 	@Autowired
 	public ItemsController(ItemService service) {
 		super();
 		this.service = service;
-	}  
-	
+	}
+
 	@PostMapping("/createItems")
 	public Items createItems(@RequestBody Items items) {
 		return this.service.createItem(items);
@@ -34,15 +33,16 @@ private ItemService service;
 
 	@DeleteMapping("/deleteItem/{id}")
 	public void deleteItem(@PathVariable Long id) throws ItemDoesntexistException {
-		this.service.deleteItem(id); 
+		this.service.deleteItem(id);
 	}
+
 	@DeleteMapping("/deleteItemByName/{name}")
 	public void deleteItem(@PathVariable String name) throws ItemDoesntexistException {
 		this.service.deleteItem(name);
 	}
-	
+
 	@GetMapping("/getItem/{id}")
-	public Items getItem(@PathVariable Long id) throws  ItemDoesntexistException {
+	public Items getItem(@PathVariable Long id) throws ItemDoesntexistException {
 		return this.service.findItemByID(id);
 	}
 
@@ -50,14 +50,16 @@ private ItemService service;
 	public List<Items> getAllItems() {
 		return this.service.readItems();
 	}
-	
+
 	@PutMapping("/updateItem/{id}")
 	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws ItemDoesntexistException {
 		return this.service.updateItem(item, id);
 	}
+
 	@PutMapping("/updateItemByName/{name}")
-	public Items updateItem(@PathVariable("name") String name, @RequestBody Items item) throws ItemDoesntexistException {
+	public Items updateItem(@PathVariable("name") String name, @RequestBody Items item)
+			throws ItemDoesntexistException {
 		return this.service.updateItem(item, name);
 	}
-	
+
 }

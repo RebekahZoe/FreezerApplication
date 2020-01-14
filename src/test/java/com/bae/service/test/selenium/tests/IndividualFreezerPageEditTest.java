@@ -28,7 +28,6 @@ private WebDriver driver;
 	private String specialCharacterInput = "£";
 	private String shortCharacterCount = "he";
 	
-
 	@Before
 	public void setup() {
 		System.setProperty(Constants.PROPERTY, Constants.PATH);
@@ -41,11 +40,12 @@ private WebDriver driver;
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
+		IndividualFreezerPage iFPage = PageFactory.initElements(driver, IndividualFreezerPage.class);
+		
         freezerPage.createFreezer(freezerName);
         Thread.sleep(1000);
         freezerPage.individualFreezer();
         
-        IndividualFreezerPage iFPage = PageFactory.initElements(driver, IndividualFreezerPage.class);
         
         assertEquals(iFPage.getTitle(), freezerName);
         
@@ -130,28 +130,28 @@ private WebDriver driver;
 		
         iFPage.editItem(specialCharacterInput,decimal);
         String alert9 = this.driver.switchTo().alert().getText();
-        assertEquals("Please enter a valid item name (No special characters, & is allowed) and a valid quantity (must be a whole number)",alert9);
+        assertEquals("Please enter a valid item name (No special characters) and a valid quantity (must be a whole number)",alert9);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
         System.out.println("11");
         
         iFPage.editItem(specialCharacterInput, specialCharacterInput);
         String alert10 = this.driver.switchTo().alert().getText();
-        assertEquals("Please enter a valid item name (No special characters, & is allowed) and a valid quantity (no special characters)",alert10);
+        assertEquals("Please enter a valid item name (No special characters) and a valid quantity (no special characters)",alert10);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
         System.out.println("12");
         
         iFPage.editItem(specialCharacterInput, letters);
         String alert11 = this.driver.switchTo().alert().getText();
-        assertEquals("Please enter a valid item name (No special characters, & is allowed) and a valid quantity (no letters)",alert11);
+        assertEquals("Please enter a valid item name (No special characters) and a valid quantity (no letters)",alert11);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
         System.out.println("13");
         
         iFPage.editItem(specialCharacterInput, numberInput3);
         String alert12 = this.driver.switchTo().alert().getText();
-        assertEquals("Please enter a valid item name (No special characters, & is allowed) and a valid quantity (must be greater than 0)",alert12);
+        assertEquals("Please enter a valid item name (No special characters) and a valid quantity (must be greater than 0)",alert12);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
         System.out.println("14");
@@ -210,6 +210,14 @@ private WebDriver driver;
 	
 	@After
 	public void tearDown() {
+		
+		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
+		IndividualFreezerPage iFPage = PageFactory.initElements(driver, IndividualFreezerPage.class);
+		
+		iFPage.deleteItem(validNameInput);
+		this.driver.switchTo().alert().accept();
+		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
+		freezerPage.deleteFreezer(freezerName);
 		this.driver.close();
 	}
 

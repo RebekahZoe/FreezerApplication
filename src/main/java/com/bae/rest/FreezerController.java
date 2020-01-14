@@ -21,29 +21,30 @@ import com.bae.service.ItemIsNotInFreezerException;
 
 @RestController
 public class FreezerController {
-	
+
 	private FreezerService service;
-	
+
 	@Autowired
 	public FreezerController(FreezerService service) {
 		super();
 		this.service = service;
-	}  
-	
+	}
+
 	@PostMapping("/createFreezer")
 	public Freezers createFreezer(@RequestBody Freezers freezer) {
-		return this.service.createFreezer(freezer); 
+		return this.service.createFreezer(freezer);
 	}
 
 	@DeleteMapping("/deleteFreezer/{id}")
 	public void deleteFreezer(@PathVariable Long id) throws FreezerDoesntexistException {
 		this.service.deleteFreezer(id);
 	}
+
 	@DeleteMapping("/deleteFreezerByName/{name}")
 	public void deleteFreezer(@PathVariable String name) throws FreezerDoesntexistException {
 		this.service.deleteFreezer(name);
 	}
-	
+
 	@GetMapping("/getFreezer/{id}")
 	public Freezers getFreezer(@PathVariable Long id) throws FreezerDoesntexistException {
 		return this.service.findFreezerByID(id);
@@ -53,18 +54,22 @@ public class FreezerController {
 	public List<Freezers> getAllFreezers() {
 		return this.service.readFreezers();
 	}
+
 	@PatchMapping("/addItem/{id}")
-	public Freezers addItemToFreezer(@PathVariable Long id,@RequestBody Items item) throws FreezerDoesntexistException {
+	public Freezers addItemToFreezer(@PathVariable Long id, @RequestBody Items item)
+			throws FreezerDoesntexistException {
 		return this.service.addItemToFreezer(id, item);
 	}
+
 	@GetMapping("/getItemsFromFreezer/{id}")
-	public Set<Items> getItemsFromFreezer(@PathVariable Long id) throws FreezerDoesntexistException{
+	public Set<Items> getItemsFromFreezer(@PathVariable Long id) throws FreezerDoesntexistException {
 		return this.service.getItemsFromFreezer(id);
 	}
-	
+
 	@DeleteMapping("/deleteItemFromFreezerByName/{name}/{id}")
-	public void deleteItemFromFreezer(@PathVariable("name") String name, @PathVariable("id") Long id) throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException{
-		this.service.deleteItemFromFreezer(name,id);
+	public void deleteItemFromFreezer(@PathVariable("name") String name, @PathVariable("id") Long id)
+			throws ItemDoesntexistException, FreezerDoesntexistException, ItemIsNotInFreezerException {
+		this.service.deleteItemFromFreezer(name, id);
 	}
 
 }
