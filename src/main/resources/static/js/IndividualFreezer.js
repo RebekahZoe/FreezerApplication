@@ -156,7 +156,7 @@ function editItem(){
             }
     
             else if (itemNameValidation(item) == " " && quantityValidation(quantity) !== " "){
-                alert("Please enter a "+quantityValidation(quantity));
+                alert("Please enter "+quantityValidation(quantity));
             }
             else if (itemNameValidation(item) !== " " && quantityValidation(quantity) == " ") {
                 alert(itemNameValidation(item));
