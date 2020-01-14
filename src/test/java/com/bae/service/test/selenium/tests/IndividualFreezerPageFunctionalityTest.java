@@ -3,6 +3,8 @@ package com.bae.service.test.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +40,7 @@ private WebDriver driver;
 		ChromeOptions opt = new ChromeOptions();
 		opt.setHeadless(true);
 		driver = new ChromeDriver(opt);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@Test
@@ -389,8 +392,9 @@ private WebDriver driver;
 		System.out.println("6");
 
 		iFPage.deleteItem(validNameInput);
+		
 		this.driver.switchTo().alert().accept();
-		Thread.sleep(500);
+		Thread.sleep(2000L);
 		String alert43 = this.driver.switchTo().alert().getText();
 		assertEquals("Item is not in this freezer", alert43);
 		this.driver.switchTo().alert().accept();

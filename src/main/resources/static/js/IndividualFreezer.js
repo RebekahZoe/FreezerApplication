@@ -151,6 +151,7 @@ function editItem(){
                 .catch(function (error) {
                     console.log(error);
                     alert("Item is not in this freezer");
+                    location.reload();
                 });
             }
     
@@ -181,15 +182,17 @@ function deleteItem(){
                 .then((response)=>{
                     console.log(response);
                     getItemsFromFreezer(); 
+                    location.reload();
                     
                 })
                 .catch(function (error) {
                     console.log(error);
                     alert("Item is not in this freezer");
+                    location.reload();
                 });
                 
             }
-            location.reload();
+            
         }
         else {
             alert(itemNameValidation(item));
