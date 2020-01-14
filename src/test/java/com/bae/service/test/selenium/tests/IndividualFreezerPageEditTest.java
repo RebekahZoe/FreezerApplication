@@ -19,7 +19,7 @@ public class IndividualFreezerPageEditTest {
 private WebDriver driver;
 	
 	private String freezerName = "Garage Freezer";
-	private String validNameInput = "curry & rice";
+	private String validNameInput = "curry";
 	private String letters = "abc";
 	private String numberInput = "3";
 	private String numberInput2 = "2";

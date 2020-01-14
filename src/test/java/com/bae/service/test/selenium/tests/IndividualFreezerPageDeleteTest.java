@@ -19,7 +19,7 @@ public class IndividualFreezerPageDeleteTest {
 	private WebDriver driver;
 
 	private String freezerName = "Garage Freezer";
-	private String validInput = "curry & rice";
+	private String validInput = "curry";
 	private String numberInput = "34";
 	private String specialCharacterInput = "£";
 	private String shortCharacterCount = "he";
