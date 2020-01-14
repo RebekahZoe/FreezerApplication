@@ -41,7 +41,7 @@ private WebDriver driver;
 		ChromeOptions opt = new ChromeOptions();
 		opt.setHeadless(true);
 		driver = new ChromeDriver(opt);
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		
 	}
 	
 	@Test
