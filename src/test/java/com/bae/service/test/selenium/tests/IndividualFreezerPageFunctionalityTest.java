@@ -40,7 +40,6 @@ private WebDriver driver;
 		ChromeOptions opt = new ChromeOptions();
 		opt.setHeadless(true);
 		driver = new ChromeDriver(opt);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@Test
@@ -351,18 +350,21 @@ private WebDriver driver;
 
         System.out.println("21");
         
+        Thread.sleep(1000);
         iFPage.deleteItem(validNameInput);
 		this.driver.switchTo().alert().dismiss();
 		iFPage.hasItemBeenAdded();
 		assertEquals(iFPage.hasItemNotBeenDeleted(), validNameInput);
 		iFPage.clearDeleteInput();
 		System.out.println("1");
-
+		
+		Thread.sleep(1000);
 		iFPage.deleteItem(validNameInput);
 		this.driver.switchTo().alert().accept();
 		assertFalse(iFPage.hasBeenDeletedCorrectly());
 		System.out.println("2");
-
+		
+		Thread.sleep(1000);
 		iFPage.deleteItem(numberInput);
 		String alert39 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid item name (No numbers)", alert39);
@@ -370,6 +372,7 @@ private WebDriver driver;
 		iFPage.clearDeleteInput();
 		System.out.println("3");
 
+		Thread.sleep(1000);
 		iFPage.deleteItem(specialCharacterInput);
 		String alert40 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid item name (No special characters)", alert40);
@@ -377,6 +380,7 @@ private WebDriver driver;
 		iFPage.clearDeleteInput();
 		System.out.println("4");
 
+		Thread.sleep(1000);
 		iFPage.deleteItem(shortCharacterCount);
 		String alert41 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid item name (must be at least 3 characters)", alert41);
@@ -384,6 +388,7 @@ private WebDriver driver;
 		iFPage.clearDeleteInput();
 		System.out.println("5");
 
+		Thread.sleep(1000);
 		iFPage.deleteItem("");
 		String alert42 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid item name", alert42);
@@ -391,6 +396,7 @@ private WebDriver driver;
 		iFPage.clearDeleteInput();
 		System.out.println("6");
 
+		Thread.sleep(1000);
 		iFPage.deleteItem(validNameInput);
 		
 		this.driver.switchTo().alert().accept();
