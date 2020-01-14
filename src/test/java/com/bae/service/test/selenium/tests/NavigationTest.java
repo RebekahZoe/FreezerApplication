@@ -3,9 +3,13 @@ package com.bae.service.test.selenium.tests;
 
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -30,8 +34,9 @@ public class NavigationTest {
 	
 	@Test
 	public void test() throws InterruptedException {
-		this.driver.manage().window().fullscreen();
+		this.driver.manage().window().setSize(new Dimension(1600,700));
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/");
+		Thread.sleep(1000);
 		
 		IndexPage indexPage = PageFactory.initElements(driver, IndexPage.class);
 		indexPage.clickFreezerApp();

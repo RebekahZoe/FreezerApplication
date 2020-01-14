@@ -390,7 +390,7 @@ private WebDriver driver;
 
 		iFPage.deleteItem(validNameInput);
 		this.driver.switchTo().alert().accept();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String alert43 = this.driver.switchTo().alert().getText();
 		assertEquals("Item is not in this freezer", alert43);
 		this.driver.switchTo().alert().accept();
