@@ -57,7 +57,7 @@ public class IndividualFreezerPageDeleteTest {
 		iFPage.deleteItem(validInput);
 		this.driver.switchTo().alert().dismiss();
 		iFPage.hasItemBeenAdded();
-		assertEquals(iFPage.hasItemBeenAddedCorrectly(), validInput);
+		assertEquals(iFPage.hasItemNotBeenDeleted(), validInput);
 		iFPage.clearDeleteInput();
 		System.out.println("1");
 
@@ -76,15 +76,13 @@ public class IndividualFreezerPageDeleteTest {
 		iFPage.deleteItem(specialCharacterInput);
 		String alert6 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid item name (No special characters)", alert6);
-		;
 		this.driver.switchTo().alert().accept();
 		iFPage.clearDeleteInput();
 		System.out.println("4");
 
 		iFPage.deleteItem(shortCharacterCount);
 		String alert7 = this.driver.switchTo().alert().getText();
-		assertEquals("Please enter a valid item name of 3 characters or more", alert7);
-		;
+		assertEquals("Please enter a valid item name (must be at least 3 characters)", alert7);
 		this.driver.switchTo().alert().accept();
 		iFPage.clearDeleteInput();
 		System.out.println("5");
@@ -115,6 +113,7 @@ public class IndividualFreezerPageDeleteTest {
 		this.driver.switchTo().alert().accept();
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		freezerPage.deleteFreezer(freezerName);
+		this.driver.switchTo().alert().accept();
 		this.driver.close();
 	}
 

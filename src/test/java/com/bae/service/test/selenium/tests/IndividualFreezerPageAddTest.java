@@ -204,6 +204,7 @@ private WebDriver driver;
 		this.driver.switchTo().alert().accept();
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		freezerPage.deleteFreezer(freezerName);
+		this.driver.switchTo().alert().accept();
 		this.driver.close();
 	}
 }

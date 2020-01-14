@@ -193,7 +193,7 @@ private WebDriver driver;
         
         iFPage.editItem(specialCharacterInput, numberInput);
         String alert18 = this.driver.switchTo().alert().getText();
-        assertEquals("Please enter a valid item name (No special characters, & is allowed)",alert18);
+        assertEquals("Please enter a valid item name (No special characters)",alert18);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
         System.out.println("20");
@@ -218,6 +218,7 @@ private WebDriver driver;
 		this.driver.switchTo().alert().accept();
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		freezerPage.deleteFreezer(freezerName);
+		this.driver.switchTo().alert().accept();
 		this.driver.close();
 	}
 

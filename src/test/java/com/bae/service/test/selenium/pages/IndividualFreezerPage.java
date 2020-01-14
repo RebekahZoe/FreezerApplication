@@ -107,11 +107,13 @@ public class IndividualFreezerPage {
 	public String hasItemBeenAddedCorrectly() {
 		return (this.itemInList.getText() + this.quantityInList.getText());
 	}
+	public String hasItemNotBeenDeleted() {
+		return (this.itemInList.getText());
+	}
 
 	public boolean hasBeenDeletedCorrectly() {
 		try {
 			itemInList.isDisplayed();
-			quantityInList.isDisplayed();
 			return true;
 		} catch (Exception e) {
 			return false;
