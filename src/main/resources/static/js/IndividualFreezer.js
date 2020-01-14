@@ -98,12 +98,12 @@ function createNewItem(){
 }
 function itemNameValidation(item){
     let hasNumber = /\d/;
-    let format = /[!@#$%^*()_+\-=£\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!@#$&%^*()_+\-=£\[\]{};':"\\|,.<>\/?]+/;
     if (hasNumber.test(item)){
         return "Please enter a valid item name (No numbers)";
     }
     else if (format.test(item)){
-        return "Please enter a valid item name (No special characters, & is allowed)";
+        return "Please enter a valid item name (No special characters)";
     }
     else if (item.length < 3){
         return "Please enter a valid item name (must be at least 3 characters)";
