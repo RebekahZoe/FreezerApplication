@@ -141,7 +141,7 @@ function editItem(){
     
     if(item !== "" && quantity !==""){
         if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
-                axios.put("http://localhost:8080/updateItemByName/"+item,{
+                axios.put("/updateItemByName/"+item,{
                     itemName : item,
                     quantity : quantity
                 }).then(()=>{
