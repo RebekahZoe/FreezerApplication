@@ -73,6 +73,7 @@ private WebDriver driver;
         
         iFPage.editItem(validNameInput,decimal);
         String alert = this.driver.switchTo().alert().getText();
+        Thread.sleep(500);
         assertEquals("Please enter a valid quantity (must be a whole number)",alert);
         this.driver.switchTo().alert().dismiss();
         iFPage.clearEditInput();
