@@ -23,8 +23,7 @@ public class Items {
 	private String itemName;
 	private int quantity;
 	
-	@ManyToOne
-	@JoinColumn(name = "freezerId")
+	
 	private Long freezerId;
 
 	public Items() {
