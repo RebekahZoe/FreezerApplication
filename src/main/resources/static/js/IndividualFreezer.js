@@ -74,7 +74,8 @@ function createNewItem(){
         if (itemNameValidation(item) == " " && quantityValidation(quantity) == " "){
             axios.patch("/FreezerApplication/addItem/"+fId,{
                     itemName : item,
-                    quantity : quantity
+                    quantity : quantity,
+                    freezerId: fId
                 }).then(()=>{
                     getItemsFromFreezer();
                     location.reload();
