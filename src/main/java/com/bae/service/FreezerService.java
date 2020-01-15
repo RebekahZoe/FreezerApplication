@@ -41,11 +41,11 @@ public class FreezerService {
 		if(!this.repo.existsById(id)) {
 			throw new FreezerDoesntexistException();
 		}
-		Freezers currentFreezer = this.findFreezerByID(id);
-		Set<Items> itemSet = currentFreezer.getItems();
-		for (Items item : itemSet) {
-			this.itemService.deleteItem(item.getItemName());
-		}
+//		Freezers currentFreezer = this.findFreezerByID(id);
+//		Set<Items> itemSet = currentFreezer.getItems();
+//		for (Items item : itemSet) {
+//			this.itemService.deleteItem(item.getItemName());
+//		}
 		this.repo.deleteById(id);
 		return this.repo.existsById(id); 
 	}

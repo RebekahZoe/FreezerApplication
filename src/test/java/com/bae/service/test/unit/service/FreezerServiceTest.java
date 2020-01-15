@@ -89,15 +89,15 @@ public class FreezerServiceTest {
 		verify(this.repo, times(1)).findById(this.id);
 	}
 	
-//	@Test
-//	public void deleteFreezerTest() throws FreezerDoesntexistException, ItemDoesntexistException {
-//		
-//		when(this.repo.existsById(id)).thenReturn(true);  
-//		this.service.deleteFreezer(id);
-//		
-//		verify(this.repo, times(1)).deleteById(this.id);
-//		verify(this.repo, times(2)).existsById(id); 
-//	}
+	@Test
+	public void deleteFreezerTest() throws FreezerDoesntexistException, ItemDoesntexistException {
+		
+		when(this.repo.existsById(id)).thenReturn(true);  
+		this.service.deleteFreezer(id);
+		
+		verify(this.repo, times(1)).deleteById(this.id);
+		verify(this.repo, times(2)).existsById(id); 
+	}
 	
 	@Test
 	public void addItemToFreezersTest() throws FreezerDoesntexistException {
