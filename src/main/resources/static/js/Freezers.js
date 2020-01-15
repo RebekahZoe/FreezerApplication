@@ -27,7 +27,9 @@ function redirect(name,id){
 
 function createFreezer(){
     var hasNumber = /\d/;
+
     var format = /[!@#$£%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
 
     const freezer = document.getElementById("freezerNameAdd").value.toLowerCase().trim();
     if(freezer !== ""){
@@ -42,7 +44,9 @@ function createFreezer(){
         }
         else{
             console.log(freezer);
+
             axios.post('/FreezerApplication/createFreezer',{
+
                 freezerName : freezer
             })
             .then(function (response) {

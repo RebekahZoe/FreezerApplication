@@ -12,38 +12,40 @@ import com.bae.persistence.repo.ItemsRepo;
 
 @Service
 public class ItemService {
-	
+
 	private ItemsRepo repo;
+
 	
 	private FreezerRepo freezerRepo;
 
 	private FreezerService freezerService;
 	
-	
+
 	public ItemService(ItemsRepo repo) {
 		super();
 		this.repo = repo;
-	}  
+	}
 
 	public List<Items> readItems() {
 		return this.repo.findAll();
 	}
- 
+
 	public Items createItem(Items item) {
-		return this.repo.save(item);  
+		return this.repo.save(item);
 	}
 
 	public boolean deleteItem(Long id) throws ItemDoesntexistException {
-		if(!this.repo.existsById(id)) {
+		if (!this.repo.existsById(id)) {
 			throw new ItemDoesntexistException();
 		}
-		this.repo.deleteById(id); 
-		return this.repo.existsById(id); 
+		this.repo.deleteById(id);
+		return this.repo.existsById(id);
 	}
-	
-	public boolean  deleteItem(String name) throws ItemDoesntexistException {
-		return this.deleteItem(this.repo.findByItemName(name).getId()); 
+
+	public boolean deleteItem(String name) throws ItemDoesntexistException {
+		return this.deleteItem(this.repo.findByItemName(name).getId());
 	}
+
 	
 	public Items findItemByID(Long id, Long freezerId) throws ItemDoesntexistException {
 		
@@ -54,15 +56,18 @@ public class ItemService {
 	} 
 	
 
+
 	
 	public Items updateItem(Items item, Long itemId, Long freezerId) throws ItemDoesntexistException, FreezerDoesntexistException {
 		Items toUpdate = findItemByID(itemId, freezerId);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());
-		return this.repo.save(toUpdate); 
+		return this.repo.save(toUpdate);
 	}
+
 	
 	public Items updateItem(Items item, String name, Long fId) throws ItemDoesntexistException, FreezerDoesntexistException {
 		return this.updateItem(item, this.repo.findByItemName(name).getId(),fId); 
+
 	}
 }

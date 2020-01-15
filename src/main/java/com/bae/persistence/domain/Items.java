@@ -108,6 +108,4 @@ public class Items {
 		return "Items [id=" + id + ", itemName=" + itemName + ", quantity=" + quantity + "]";
 	}
 
-	
-
 }

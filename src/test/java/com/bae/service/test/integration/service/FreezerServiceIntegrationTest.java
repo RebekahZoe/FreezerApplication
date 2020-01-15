@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.FetchType;
-
 import org.assertj.core.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +19,10 @@ import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
+
 import com.bae.service.ItemDoesntexistException;
 import com.bae.service.ItemService;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -52,7 +52,9 @@ public class FreezerServiceIntegrationTest {
 		this.testFreezerWithID = this.repo.save(this.testFreezer);
 		this.toUpdate = this.repo.save(this.testFreezer);
 		this.item = new Items("curry",2);
+
 		this.item.setId(5L);
+
 		toUpdate.getItems().add(item);
 		
 		this.freezerWithItem = this.repo.save(this.testFreezer);
