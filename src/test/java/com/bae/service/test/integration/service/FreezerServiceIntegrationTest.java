@@ -21,6 +21,7 @@ import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
+import com.bae.service.ItemDoesntexistException;
 import com.bae.service.ItemService;
 
 @RunWith(SpringRunner.class)
@@ -64,7 +65,7 @@ public class FreezerServiceIntegrationTest {
 	}
 
 	@Test
-	public void testDeleteFreezer() throws FreezerDoesntexistException {
+	public void testDeleteFreezer() throws FreezerDoesntexistException, ItemDoesntexistException {
 		assertThat(this.service.deleteFreezer(this.testFreezerWithID.getId())).isFalse();
 	}
 

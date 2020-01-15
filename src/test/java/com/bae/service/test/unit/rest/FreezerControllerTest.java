@@ -23,6 +23,7 @@ import com.bae.persistence.domain.Items;
 import com.bae.rest.FreezerController;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
+import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
 public class FreezerControllerTest {
@@ -66,7 +67,7 @@ public class FreezerControllerTest {
 	}
 
 	@Test
-	public void deleteFreezerTest() throws FreezerDoesntexistException {
+	public void deleteFreezerTest() throws FreezerDoesntexistException, ItemDoesntexistException {
 		this.controller.deleteFreezer(id);
 
 		verify(this.service, times(1)).deleteFreezer(id);

@@ -37,15 +37,20 @@ public class FreezerService {
 				() -> new FreezerDoesntexistException());
 	} 
 
-	public boolean  deleteFreezer(Long id) throws FreezerDoesntexistException {
+	public boolean  deleteFreezer(Long id) throws FreezerDoesntexistException, ItemDoesntexistException {
 		if(!this.repo.existsById(id)) {
 			throw new FreezerDoesntexistException();
+		}
+		Freezers currentFreezer = this.findFreezerByID(id);
+		Set<Items> itemSet = currentFreezer.getItems();
+		for (Items item : itemSet) {
+			this.itemService.deleteItem(item.getItemName());
 		}
 		this.repo.deleteById(id);
 		return this.repo.existsById(id); 
 	}
 
-	public boolean  deleteFreezer(String name) throws FreezerDoesntexistException {
+	public boolean  deleteFreezer(String name) throws FreezerDoesntexistException, ItemDoesntexistException {
 		return this.deleteFreezer(this.repo.findByFreezerName(name).getId()); 
 	}
 	public Freezers addItemToFreezer(Long id, Items item) throws FreezerDoesntexistException {
