@@ -24,7 +24,6 @@ public class Items {
 	private int quantity;
 	
 	
-	private Long freezerId;
 
 	public Items() {
 		super();
@@ -40,12 +39,7 @@ public class Items {
 		this.quantity = quantity;
 	}
 	
-	public Items(String itemName, int quantity, Long freezerId) {
-		super();
-		this.itemName = itemName;
-		this.quantity = quantity;
-		this.freezerId = freezerId;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -71,14 +65,7 @@ public class Items {
 		this.quantity = quantity;
 	}
 
-	public Long getFreezerId() {
-		return freezerId;
-	}
-
-	public void setFreezerId(Long freezerId) {
-		this.freezerId = freezerId;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
