@@ -48,7 +48,7 @@ public class ItemService {
 	public Items findItemByID(Long id, Long freezerId) throws ItemDoesntexistException {
 		
 		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId() == id && items.getFreezer_id() == freezerId).findFirst();
-		System.out.println("##################################"+item.isEmpty());
+		
 		return item.orElseThrow( 
 				() -> new ItemDoesntexistException());
 	} 
@@ -57,7 +57,6 @@ public class ItemService {
 	
 	public Items updateItem(Items item, Long itemId, Long freezerId) throws ItemDoesntexistException, FreezerDoesntexistException {
 		Items toUpdate = findItemByID(itemId, freezerId);
-		System.out.println("###############################" + toUpdate);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());
 		return this.repo.save(toUpdate); 
