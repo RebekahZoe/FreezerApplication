@@ -4,7 +4,6 @@ package com.bae.persistence.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,15 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Entity
 @Table(name = "freezers")
@@ -33,9 +28,9 @@ public class Freezers {
 	@Column(unique = true)
 	private String freezerName;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "freezerId")
+	@JoinColumn(name = "freezer_id")
 	private Set<Items> items = new HashSet<>();
 
 	public Freezers(String freezerName) {
