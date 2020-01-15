@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,6 +35,7 @@ public class Freezers {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "freezerId")
 	private Set<Items> items = new HashSet<>();
 
 	public Freezers(String freezerName) {
