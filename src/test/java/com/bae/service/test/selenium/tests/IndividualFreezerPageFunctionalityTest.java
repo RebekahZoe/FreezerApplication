@@ -61,7 +61,7 @@ private WebDriver driver;
         assertEquals(iFPage.getTitle(), freezerName);
         
         iFPage.editItem(validNameInput, numberInput);
-        
+        Thread.sleep(1000);
         String notInList = this.driver.switchTo().alert().getText();
         assertEquals("Item is not in this freezer",notInList);
         this.driver.switchTo().alert().dismiss();
