@@ -40,6 +40,10 @@ private ItemService service;
 	public void deleteItem(@PathVariable String name) throws ItemDoesntexistException {
 		this.service.deleteItem(name);
 	}
+	@DeleteMapping("/deleteAllItemsInFreezer/{name}")
+	public void deleteAllItemsInFreezer(@PathVariable String name) {
+		this.service.deleteAllItemsInAFreezer(name);
+	}
 	
 	@GetMapping("/getItem/{id}")
 	public Items getItem(@PathVariable Long id) throws  ItemDoesntexistException {

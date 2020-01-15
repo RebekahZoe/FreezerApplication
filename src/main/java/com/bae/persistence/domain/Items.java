@@ -22,6 +22,10 @@ public class Items {
 	private Long id;
 	private String itemName;
 	private int quantity;
+	
+	@ManyToOne
+	@JoinColumn(name = "freezerId")
+	private Long freezerId;
 
 	public Items() {
 		super();
@@ -35,6 +39,13 @@ public class Items {
 		super();
 		this.itemName = itemName;
 		this.quantity = quantity;
+	}
+	
+	public Items(String itemName, int quantity, Long freezerId) {
+		super();
+		this.itemName = itemName;
+		this.quantity = quantity;
+		this.freezerId = freezerId;
 	}
 
 	public Long getId() {
@@ -59,6 +70,14 @@ public class Items {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public Long getFreezerId() {
+		return freezerId;
+	}
+
+	public void setFreezerId(Long freezerId) {
+		this.freezerId = freezerId;
 	}
 
 	@Override

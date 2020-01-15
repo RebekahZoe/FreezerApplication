@@ -86,6 +86,7 @@ function deleteValidation(){
                 axios.delete("/FreezerApplication/deleteFreezerByName/"+freezer)
                 .then((response)=>{
                     getFreezers();
+                    deleteItemsFromFreezer(freezer);
                     console.log(response);
                     location.reload();
                     
@@ -105,4 +106,12 @@ function deleteValidation(){
     }
 }
 
-
+function deleteItemsFromFreezer(freezer){
+    axios.delete("/FreezerApplication/deleteAllItemsInFreezer/"+freezer)
+    .then((response)=>{
+        console.log(response);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}

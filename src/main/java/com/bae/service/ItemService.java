@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.domain.Items;
+import com.bae.persistence.repo.FreezerRepo;
 import com.bae.persistence.repo.ItemsRepo;
 
 @Service
 public class ItemService {
 	
 	private ItemsRepo repo;
+	
+	private FreezerRepo freezerRepo;
 	
 	
 	public ItemService(ItemsRepo repo) {
@@ -42,7 +46,20 @@ public class ItemService {
 		return this.repo.findById(id).orElseThrow(
 				() -> new ItemDoesntexistException());
 	}
-
+	
+	public void deleteAllItemsInAFreezer(Freezers freezers) {
+		List<Items> items = this.repo.findAll();
+		for (Items item : items) {
+			if (item.getFreezerId() == freezers.getId()) {
+				this.repo.deleteById(item.getId());
+			}
+		}
+	}
+	
+	public void deleteAllItemsInAFreezer(String name) {
+		this.deleteAllItemsInAFreezer(this.freezerRepo.findByFreezerName(name));
+	}
+	
 	public Items updateItem(Items item, Long id) throws ItemDoesntexistException {
 		Items toUpdate = findItemByID(id);
 		toUpdate.setItemName(item.getItemName());
