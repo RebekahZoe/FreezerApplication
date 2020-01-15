@@ -1,7 +1,7 @@
 "use strict";
 
 function getFreezers(){
-    axios.get('/getAllFreezers')
+    axios.get('/FreezerApplication/getAllFreezers')
     .then((response)=>{
         showFreezers(response.data);
         console.log(response.data);

@@ -27,7 +27,7 @@ let fId = getQueryVariable("id");
 
 function getItemsFromFreezer(){
     console.log("bloop");
-   axios.get("FreezerApplication/getItemsFromFreezer/"+fId)
+   axios.get("/FreezerApplication/getItemsFromFreezer/"+fId)
    .then((response)=>{
         showItemsFromFreezer(response.data);
         console.log(response);
