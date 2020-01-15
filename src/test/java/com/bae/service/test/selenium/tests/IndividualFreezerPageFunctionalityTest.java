@@ -38,9 +38,9 @@ private WebDriver driver;
 	@Before
 	public void setup() {
 		System.setProperty(Constants.PROPERTY, Constants.PATH);
-//		ChromeOptions opt = new ChromeOptions();
-//		opt.setHeadless(true);
-		driver = new ChromeDriver();
+		ChromeOptions opt = new ChromeOptions();
+		opt.setHeadless(true);
+		driver = new ChromeDriver(opt);
 		
 	}
 	
