@@ -36,32 +36,15 @@ private ItemService service;
 	public void deleteItem(@PathVariable Long id) throws ItemDoesntexistException {
 		this.service.deleteItem(id); 
 	}
-//	@DeleteMapping("/deleteItemByName/{name}")
-//	public void deleteItem(@PathVariable String name) throws ItemDoesntexistException {
-//		this.service.deleteItem(name);
-//	}
-//	@DeleteMapping("/deleteAllItemsInFreezer/{name}")
-//	public void deleteAllItemsInFreezer(@PathVariable String name) {
-//		this.service.deleteAllItemsInAFreezer(name);
-//	}
-	
-	@GetMapping("/getItem/{id}")
-	public Items getItem(@PathVariable Long id) throws  ItemDoesntexistException {
-		return this.service.findItemByID(id);
-	}
 
-	@GetMapping("/getAllItems")
-	public List<Items> getAllItems() {
-		return this.service.readItems();
-	}
 	
-	@PutMapping("/updateItem/{id}")
-	public Items updateItem(@PathVariable("id") Long id, @RequestBody Items item) throws ItemDoesntexistException {
-		return this.service.updateItem(item, id);
+	@PutMapping("/updateItem/{id}/{fId}")
+	public Items updateItem(@PathVariable Long id, @PathVariable Long fId, @RequestBody Items item) throws ItemDoesntexistException, FreezerDoesntexistException {
+		return this.service.updateItem(item, id, fId);
 	}
-	@PutMapping("/updateItemByName/{name}")
-	public Items updateItem(@PathVariable("name") String name, @RequestBody Items item) throws ItemDoesntexistException {
-		return this.service.updateItem(item, name);
+	@PutMapping("/updateItemByName/{name}/{fId}")
+	public Items updateItem(@PathVariable("name") String name, @PathVariable("fId") Long fId, @RequestBody Items item) throws ItemDoesntexistException, FreezerDoesntexistException {
+		return this.service.updateItem(item, name, fId);
 	}
 	
 }

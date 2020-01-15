@@ -69,10 +69,10 @@ public class FreezerService {
 			}
 		}
 		if (found == true) {
-//		if(itemSet.contains(this.itemRepo.findByItemName(name))) {
+
 			currentFreezer.getItems().remove((this.itemRepo.findByItemName(name)));
 			this.itemService.deleteItem(this.itemRepo.findByItemName(name).getId());
-			return this.itemRepo.existsById(this.itemRepo.findByItemName(name).getId()); 
+			return true; 
 		}
 		else {
 			throw new ItemIsNotInFreezerException();

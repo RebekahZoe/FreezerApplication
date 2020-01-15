@@ -1,6 +1,7 @@
 package com.bae.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class ItemService {
 	private ItemsRepo repo;
 	
 	private FreezerRepo freezerRepo;
+
+	private FreezerService freezerService;
 	
 	
 	public ItemService(ItemsRepo repo) {
@@ -42,31 +45,25 @@ public class ItemService {
 		return this.deleteItem(this.repo.findByItemName(name).getId()); 
 	}
 	
-	public Items findItemByID(Long id) throws ItemDoesntexistException {
-		return this.repo.findById(id).orElseThrow(
+	public Items findItemByID(Long id, Long freezerId) throws ItemDoesntexistException {
+		
+		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId() == id && items.getFreezer_id() == freezerId).findFirst();
+		System.out.println("##################################"+item.isEmpty());
+		return item.orElseThrow( 
 				() -> new ItemDoesntexistException());
-	}
+	} 
 	
-//	public void deleteAllItemsInAFreezer(Freezers freezers) {
-//		List<Items> items = this.repo.findAll();
-//		for (Items item : items) {
-//			if (item.getFreezerId() == freezers.getId()) {
-//				this.repo.deleteById(item.getId());
-//			}
-//		}
-//	}
-//	
-//	public void deleteAllItemsInAFreezer(String name) {
-//		this.deleteAllItemsInAFreezer(this.freezerRepo.findByFreezerName(name));
-//	}
+
 	
-	public Items updateItem(Items item, Long id) throws ItemDoesntexistException {
-		Items toUpdate = findItemByID(id);
+	public Items updateItem(Items item, Long itemId, Long freezerId) throws ItemDoesntexistException, FreezerDoesntexistException {
+		Items toUpdate = findItemByID(itemId, freezerId);
+		System.out.println("###############################" + toUpdate);
 		toUpdate.setItemName(item.getItemName());
 		toUpdate.setQuantity(item.getQuantity());
 		return this.repo.save(toUpdate); 
 	}
-	public Items updateItem(Items item, String name) throws ItemDoesntexistException {
-		return this.updateItem(item, this.repo.findByItemName(name).getId()); 
+	
+	public Items updateItem(Items item, String name, Long fId) throws ItemDoesntexistException, FreezerDoesntexistException {
+		return this.updateItem(item, this.repo.findByItemName(name).getId(),fId); 
 	}
 }

@@ -52,7 +52,7 @@ public class FreezerServiceIntegrationTest {
 		this.testFreezerWithID = this.repo.save(this.testFreezer);
 		this.toUpdate = this.repo.save(this.testFreezer);
 		this.item = new Items("curry",2);
-		this.item.setId(6L);
+		this.item.setId(5L);
 		toUpdate.getItems().add(item);
 		
 		this.freezerWithItem = this.repo.save(this.testFreezer);

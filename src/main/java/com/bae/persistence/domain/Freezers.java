@@ -4,6 +4,7 @@ package com.bae.persistence.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,8 +29,7 @@ public class Freezers {
 	@Column(unique = true)
 	private String freezerName;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "freezer_id")
 	private Set<Items> items = new HashSet<>();
 

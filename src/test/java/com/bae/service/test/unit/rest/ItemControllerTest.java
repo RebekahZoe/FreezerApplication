@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.rest.ItemsController;
 import com.bae.service.ItemService;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
@@ -63,36 +64,21 @@ public class ItemControllerTest {
 		verify(this.service, times(1)).deleteItem(id);
 	}
 
-	@Test
-	public void findItemByIDTest() throws ItemDoesntexistException {
-		when(this.service.findItemByID(this.id)).thenReturn(this.testItemWithID);
+	
 
-		assertEquals(this.testItemWithID, this.controller.getItem(this.id));
 
-		verify(this.service, times(1)).findItemByID(this.id);
-	}
-
-	@Test
-	public void getAllItemsTest() {
-
-		when(service.readItems()).thenReturn(this.itemList);
-
-		assertFalse("Controller has found no Items", this.controller.getAllItems().isEmpty());
-
-		verify(service, times(1)).readItems();
-	}
 	
 	@Test
-	public void updateItemTest() throws ItemDoesntexistException {
+	public void updateItemTest() throws ItemDoesntexistException, FreezerDoesntexistException {
 		Items newItem = new Items("curry",2);
 		Items updatedItem = new Items(newItem.getItemName(), newItem.getQuantity());
 		updatedItem.setId(this.id);
 
-		when(this.service.updateItem(newItem, this.id)).thenReturn(updatedItem);
+		when(this.service.updateItem(newItem, this.id, id)).thenReturn(updatedItem);
 
-		assertEquals(updatedItem, this.controller.updateItem(this.id, newItem));
+		assertEquals(updatedItem, this.controller.updateItem(this.id, id, newItem));
 
-		verify(this.service, times(1)).updateItem(newItem, this.id);
+		verify(this.service, times(1)).updateItem(newItem, this.id, id);
 	}
 
 

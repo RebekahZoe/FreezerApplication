@@ -17,7 +17,16 @@ public class Items {
 	private String itemName;
 	private int quantity;
 	
+	private Long freezer_id;
 	
+
+	public Long getFreezer_id() {
+		return freezer_id;
+	}
+
+	public void setFreezer_id(Long freezer_id) {
+		this.freezer_id = freezer_id;
+	}
 
 	public Items() {
 		super();

@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.ItemService;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)
@@ -44,6 +45,7 @@ public class ItemServiceTest {
     	this.items.add(item);
     	this.itemWithId = new Items(item.getItemName(),item.getQuantity()); 
     	this.itemWithId.setId(id);
+    	this.itemWithId.setFreezer_id(id);
     }
 	@Test
 	public void readItemsTest() { 
@@ -71,24 +73,8 @@ public class ItemServiceTest {
 		verify(this.repo, times(2)).existsById(id);
 	}
 	
-	@Test
-	public void findItemByIDTest() throws ItemDoesntexistException {
-		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
-
-		assertEquals(this.itemWithId, this.service.findItemByID(this.id));
-
-		verify(this.repo, times(1)).findById(this.id);
-	}
 	
-	@Test
-	public void updateItemTest() throws ItemDoesntexistException {
-		
-	when(this.repo.findById(this.id)).thenReturn(Optional.of(this.itemWithId));
-	Items updateItem = new Items("curry",2);
-	when(this.repo.save(itemWithId)).thenReturn(updateItem);
+	
 
-	assertEquals(updateItem, this.service.updateItem(itemWithId, this.id));
-
-	} 
 }
 	
