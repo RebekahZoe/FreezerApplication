@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.Items;
 import com.bae.service.ItemService;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RestController
@@ -39,7 +40,7 @@ public class ItemsController {
 
 	
 	@PutMapping("/updateItem/{id}/{fId}")
-	public Items updateItem(@PathVariable Long id, @PathVariable Long fId, @RequestBody Items item) throws ItemDoesntexistException, FreezerDoesntexistException {
+	public Items updateItem(@PathVariable Long id, @PathVariable Long fId, @RequestBody Items item) throws ItemDoesntexistException, FreezerDoesntexistException  {
 		return this.service.updateItem(item, id, fId);
 	}
 	@PutMapping("/updateItemByName/{name}/{fId}")
