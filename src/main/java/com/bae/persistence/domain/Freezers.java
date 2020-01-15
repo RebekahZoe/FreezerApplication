@@ -15,6 +15,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -30,6 +33,7 @@ public class Freezers {
 	private String freezerName;
 
 	@OneToMany(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Items> items = new HashSet<>();
 
 	public Freezers(String freezerName) {
