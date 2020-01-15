@@ -38,15 +38,15 @@ private WebDriver driver;
 	@Before
 	public void setup() {
 		System.setProperty(Constants.PROPERTY, Constants.PATH);
-		ChromeOptions opt = new ChromeOptions();
-		opt.setHeadless(true);
-		driver = new ChromeDriver(opt);
+//		ChromeOptions opt = new ChromeOptions();
+//		opt.setHeadless(true);
+		driver = new ChromeDriver();
 		
 	}
 	
 	@Test
 	public void test() throws InterruptedException {
-		this.driver.manage().window().setSize(new Dimension(1600,700));
+		this.driver.manage().window().setSize(new Dimension(1920,1080));
 		this.driver.get("http://35.176.212.133:8181/FreezerApplication/Freezer.html");
 		
 		FreezerPage freezerPage = PageFactory.initElements(driver, FreezerPage.class);
@@ -61,7 +61,7 @@ private WebDriver driver;
         assertEquals(iFPage.getTitle(), freezerName);
         
         iFPage.editItem(validNameInput, numberInput);
-        Thread.sleep(500);
+        
         String notInList = this.driver.switchTo().alert().getText();
         assertEquals("Item is not in this freezer",notInList);
         this.driver.switchTo().alert().dismiss();
