@@ -33,7 +33,7 @@ public class Freezers {
 	@Column(unique = true)
 	private String freezerName;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "freezerId")
 	private Set<Items> items = new HashSet<>();
