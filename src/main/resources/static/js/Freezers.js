@@ -42,7 +42,7 @@ function createFreezer(){
         }
         else{
             console.log(freezer);
-            axios.post('FreezerApplication/createFreezer',{
+            axios.post('/FreezerApplication/createFreezer',{
                 freezerName : freezer
             })
             .then(function (response) {
@@ -83,7 +83,7 @@ function deleteValidation(){
         else{
             console.log(freezer);
             if (confirm("Are you sure you want to delete this freezer?")){
-                axios.delete("FreezerApplication/deleteFreezerByName/"+freezer)
+                axios.delete("/FreezerApplication/deleteFreezerByName/"+freezer)
                 .then((response)=>{
                     getFreezers();
                     console.log(response);
