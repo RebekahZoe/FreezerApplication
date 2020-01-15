@@ -64,34 +64,9 @@ public class ItemsControllerIntegrationTest {
 		this.mock.perform(request(HttpMethod.DELETE, "/deleteItem/" + this.id)).andExpect(status().isOk());
 	}
 
-	@Test
-	public void testReadItem() throws Exception {
-		List<Items> itemList = new ArrayList<>();
-		itemList.add(this.testItemWithID);
 
-		String content = this.mock.perform(request(HttpMethod.GET, "/getAllItems").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+	
 
-		assertEquals(this.mapper.writeValueAsString(itemList), content);
-	}
-
-	@Test
-	public void testFindItemByID() throws Exception {
-		this.mock.perform(request(HttpMethod.GET, "/getItem/" + this.id)).andExpect(status().isOk());
-	}
-
-	@Test
-	public void testUpdateItem() throws Exception {
-		Items newItem = new Items("curry", 2);
-		Items updatedItem = new Items(newItem.getItemName(), newItem.getQuantity());
-		updatedItem.setId(this.id);
-
-		String result = this.mock
-				.perform(request(HttpMethod.PUT, "/updateItem/" + this.id).accept(MediaType.APPLICATION_JSON)
-						.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(newItem)))
-				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-
-		assertEquals(this.mapper.writeValueAsString(updatedItem), result);
-	}
+	
 
 }

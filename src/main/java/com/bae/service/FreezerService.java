@@ -37,16 +37,18 @@ public class FreezerService {
 		return this.repo.findById(id).orElseThrow(() -> new FreezerDoesntexistException());
 	}
 
-	public boolean deleteFreezer(Long id) throws FreezerDoesntexistException {
-		if (!this.repo.existsById(id)) {
+
+	public boolean  deleteFreezer(Long id) throws FreezerDoesntexistException, ItemDoesntexistException {
+		if(!this.repo.existsById(id)) {
 			throw new FreezerDoesntexistException();
 		}
 		this.repo.deleteById(id);
 		return this.repo.existsById(id);
 	}
 
-	public boolean deleteFreezer(String name) throws FreezerDoesntexistException {
-		return this.deleteFreezer(this.repo.findByFreezerName(name).getId());
+
+	public boolean  deleteFreezer(String name) throws FreezerDoesntexistException, ItemDoesntexistException {
+		return this.deleteFreezer(this.repo.findByFreezerName(name).getId()); 
 	}
 
 	public Freezers addItemToFreezer(Long id, Items item) throws FreezerDoesntexistException {
@@ -72,11 +74,14 @@ public class FreezerService {
 			}
 		}
 		if (found == true) {
-//		if(itemSet.contains(this.itemRepo.findByItemName(name))) {
+
 			currentFreezer.getItems().remove((this.itemRepo.findByItemName(name)));
 			this.itemService.deleteItem(this.itemRepo.findByItemName(name).getId());
-			return this.itemRepo.existsById(this.itemRepo.findByItemName(name).getId());
-		} else {
+
+			return true; 
+		}
+		else {
+
 			throw new ItemIsNotInFreezerException();
 		}
 

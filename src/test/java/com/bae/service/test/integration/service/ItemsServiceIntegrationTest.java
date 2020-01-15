@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
+import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 import com.bae.service.ItemService;
 
@@ -53,18 +54,15 @@ public class ItemsServiceIntegrationTest {
 		assertThat(this.service.readItems()).isEqualTo(Arrays.asList(new Items[] { this.testItemWithID }));
 	}
 	
-	@Test
-	public void testFindItemById() throws ItemDoesntexistException {
-		assertThat(this.service.findItemByID(this.testItemWithID.getId())).isEqualTo(this.testItemWithID);
-	}
+
 	
 	@Test
-	public void testUpdateItem() throws ItemDoesntexistException {
+	public void testUpdateItem() throws ItemDoesntexistException, FreezerDoesntexistException {
 		Items newItem = new Items("curry", 1);
 		Items updatedItem = new Items(newItem.getItemName(), newItem.getQuantity());
 		updatedItem.setId(this.testItemWithID.getId());
 
-		assertThat(this.service.updateItem(newItem, this.testItemWithID.getId())).isEqualTo(updatedItem);
+		assertThat(this.service.updateItem(newItem, this.testItemWithID.getId(), null)).isEqualTo(updatedItem);
 	}
 
 }

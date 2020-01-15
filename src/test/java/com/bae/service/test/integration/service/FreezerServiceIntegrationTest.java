@@ -20,6 +20,10 @@ import com.bae.persistence.repo.FreezerRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 
+import com.bae.service.ItemDoesntexistException;
+import com.bae.service.ItemService;
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FreezerServiceIntegrationTest {
@@ -48,20 +52,22 @@ public class FreezerServiceIntegrationTest {
 		this.testFreezerWithID = this.repo.save(this.testFreezer);
 		this.toUpdate = this.repo.save(this.testFreezer);
 		this.item = new Items("curry",2);
-		this.item.setId(6L);
+
+		this.item.setId(5L);
+
 		toUpdate.getItems().add(item);
 		
 		this.freezerWithItem = this.repo.save(this.testFreezer);
 
 	}
 
-	@Test
+	@Test 
 	public void testCreateFreezer() {
 		assertEquals(this.testFreezerWithID, this.service.createFreezer(testFreezer));
 	}
 
 	@Test
-	public void testDeleteFreezer() throws FreezerDoesntexistException {
+	public void testDeleteFreezer() throws FreezerDoesntexistException, ItemDoesntexistException {
 		assertThat(this.service.deleteFreezer(this.testFreezerWithID.getId())).isFalse();
 	}
 
