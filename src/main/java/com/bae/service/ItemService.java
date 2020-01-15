@@ -47,18 +47,18 @@ public class ItemService {
 				() -> new ItemDoesntexistException());
 	}
 	
-	public void deleteAllItemsInAFreezer(Freezers freezers) {
-		List<Items> items = this.repo.findAll();
-		for (Items item : items) {
-			if (item.getFreezerId() == freezers.getId()) {
-				this.repo.deleteById(item.getId());
-			}
-		}
-	}
-	
-	public void deleteAllItemsInAFreezer(String name) {
-		this.deleteAllItemsInAFreezer(this.freezerRepo.findByFreezerName(name));
-	}
+//	public void deleteAllItemsInAFreezer(Freezers freezers) {
+//		List<Items> items = this.repo.findAll();
+//		for (Items item : items) {
+//			if (item.getFreezerId() == freezers.getId()) {
+//				this.repo.deleteById(item.getId());
+//			}
+//		}
+//	}
+//	
+//	public void deleteAllItemsInAFreezer(String name) {
+//		this.deleteAllItemsInAFreezer(this.freezerRepo.findByFreezerName(name));
+//	}
 	
 	public Items updateItem(Items item, Long id) throws ItemDoesntexistException {
 		Items toUpdate = findItemByID(id);
