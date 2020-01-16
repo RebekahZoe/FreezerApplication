@@ -27,6 +27,7 @@ import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 import com.bae.service.ItemDoesntexistException;
+import com.bae.service.ItemIsNotInFreezerException;
 import com.bae.service.ItemService;
 
 @RunWith(SpringRunner.class)
@@ -61,6 +62,7 @@ public class FreezerServiceTest {
     	this.item = new Items("curry", 2);
 		this.itemWithId = new Items(item.getItemName(),item.getQuantity());
 		this.itemWithId.setId(1L);
+		
     }
 	@Test
 	public void readFreezersTest() { 
@@ -100,6 +102,18 @@ public class FreezerServiceTest {
 	}
 	
 	@Test
+	public void deleteFreezerByNameTest() throws FreezerDoesntexistException, ItemDoesntexistException {
+		
+		when(this.repo.findByFreezerName("kitchen freezer")).thenReturn(freezerWithId);
+		when(this.repo.existsById(id)).thenReturn(true);
+		
+		this.service.deleteFreezer(id);
+		
+		verify(this.repo, times(1)).deleteById(this.id);
+		verify(this.repo, times(2)).existsById(id); 
+	}
+	
+	@Test
 	public void addItemToFreezersTest() throws FreezerDoesntexistException {
 		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.freezerWithId));
 		Freezers updateFreezer = this.service.findFreezerByID(id);
@@ -122,6 +136,22 @@ public class FreezerServiceTest {
 		Mockito.when(this.repo.findById(this.freezerWithId.getId())).thenReturn(Optional.of(this.freezerWithId));
 		assertEquals(this.items,this.service.getItemsFromFreezer(this.freezerWithId.getId()));
 		
+	}
+	
+	@Test
+	public void deleteItemFromFreezerTest() throws FreezerDoesntexistException, ItemDoesntexistException, ItemIsNotInFreezerException {
+		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.freezerWithId));
+		Freezers currentFreezer = this.service.findFreezerByID(id);
+		this.items.add(itemWithId);
+		currentFreezer.setItems(items);
+
+		when(this.itemRepo.findByItemName("curry")).thenReturn(this.itemWithId);
+		when(this.itemService.deleteItem(1L)).thenReturn(true);
+		
+		this.service.deleteItemFromFreezer("curry", 1L);
+		
+		verify(this.itemRepo, times(2)).findByItemName("curry");
+		verify(this.itemService, times(1)).deleteItem(1L);
 	}
 
 }

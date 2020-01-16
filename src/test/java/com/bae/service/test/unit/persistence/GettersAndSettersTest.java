@@ -86,5 +86,13 @@ public class GettersAndSettersTest {
 		assertEquals("Freezers [id=null, freezerName=kitchen freezer, items=[]]",freezer.toString());
 		assertEquals("Items [id=null, itemName=curry, quantity=2]",item.toString());
 	}
+	
+	@Test
+	public void testHashcode() {
+		Freezers x = new Freezers("kitchen freezer");  
+		Freezers y = new Freezers("kitchen freezer"); 
+	  Assert.assertTrue(x.equals(y) && y.equals(x));
+	  Assert.assertTrue(x.hashCode() == y.hashCode());
+	}
 
 }
