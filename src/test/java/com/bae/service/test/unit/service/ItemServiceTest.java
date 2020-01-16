@@ -8,8 +8,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Items;
 import com.bae.persistence.repo.ItemsRepo;
 import com.bae.service.ItemService;
-import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.ItemDoesntexistException;
 
 @RunWith(SpringRunner.class)

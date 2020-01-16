@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.bae.persistence.domain.Freezers;
 import com.bae.persistence.domain.Items;
-import com.bae.persistence.repo.FreezerRepo;
 import com.bae.persistence.repo.ItemsRepo;
 
 @Service
@@ -16,11 +14,6 @@ public class ItemService {
 	private ItemsRepo repo;
 
 	
-	private FreezerRepo freezerRepo;
-
-	private FreezerService freezerService;
-	
-
 	public ItemService(ItemsRepo repo) {
 		super();
 		this.repo = repo;
@@ -49,7 +42,7 @@ public class ItemService {
 	
 	public Items findItemByID(Long id, Long freezerId) throws ItemDoesntexistException {
 		
-		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId() == id && items.getFreezer_id() == freezerId).findFirst();
+		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId().equals(id) && items.getFreezer_id().equals(freezerId)).findFirst();
 		
 		return item.orElseThrow( 
 				() -> new ItemDoesntexistException());

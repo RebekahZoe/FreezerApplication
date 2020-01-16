@@ -21,7 +21,6 @@ import com.bae.service.FreezerDoesntexistException;
 import com.bae.service.FreezerService;
 
 import com.bae.service.ItemDoesntexistException;
-import com.bae.service.ItemService;
 
 
 @RunWith(SpringRunner.class)
