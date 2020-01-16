@@ -71,46 +71,42 @@ public class FreezerPageFunctionalityTest {
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearAddInput();
 		Thread.sleep(2000);
+		System.out.println("end of create tests");
 		
 		freezerPage.deleteFreezer(validInput);
 		this.driver.switchTo().alert().dismiss();
 		freezerPage.hasFreezerBeenAdded();
 		assertEquals(freezerPage.hasFreezerBeenAddedCorrectly(),validInput);
 		freezerPage.clearDeleteInput();
-		System.out.println("1");
+		
 		
 		freezerPage.deleteFreezer(validInput);
 		this.driver.switchTo().alert().accept();
 		assertFalse(freezerPage.hasBeenDeletedCorrectly());
-		System.out.println("2");
 		
 		freezerPage.deleteFreezer(numberInput);
 		String alert5 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid freezer name (No numbers)",alert5);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearDeleteInput();
-		System.out.println("3");
 		
 		freezerPage.deleteFreezer(specialCharacterInput);
 		String alert6 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid freezer name (No special characters)",alert6);;
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearDeleteInput();
-		System.out.println("4");
 		
 		freezerPage.deleteFreezer(shortCharacterCount);
 		String alert7 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid freezer name of 6 characters or more",alert7);;
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearDeleteInput();
-		System.out.println("5");
 		
 		freezerPage.deleteFreezer("");
 		String alert8 = this.driver.switchTo().alert().getText();
 		assertEquals("Please enter a valid freezer name",alert8);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearDeleteInput();
-		System.out.println("6");
 		
 		freezerPage.deleteFreezer(validInput);
 		this.driver.switchTo().alert().accept();
@@ -119,7 +115,7 @@ public class FreezerPageFunctionalityTest {
 		assertEquals("Freezer name is not in the list",alert9);
 		this.driver.switchTo().alert().accept();
 		freezerPage.clearDeleteInput();
-		System.out.println("7");
+		System.out.println("end of delete tests");
 		
 	}
 	
