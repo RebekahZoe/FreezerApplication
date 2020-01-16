@@ -42,7 +42,7 @@ public class ItemService {
 	
 	public Items findItemByID(Long id, Long freezerId) throws ItemDoesntexistException {
 		
-		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId().equals(id) && items.getFreezer_id().equals(freezerId)).findFirst();
+		Optional<Items> item = repo.findAll().stream().filter(items -> items.getId() == id && items.getFreezer_id() == freezerId).findFirst();
 		
 		return item.orElseThrow( 
 				() -> new ItemDoesntexistException());
