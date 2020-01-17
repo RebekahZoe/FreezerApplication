@@ -59,7 +59,9 @@ Chrome has been tested with Selenium, Firefox has only been manually tested.
 <a name="hp"></a>
 ### Home Page
 When you first load the front end you will be taken to the home page which simply describes the application. 
+
 It has a nav bar that allows you to move to the freezer page by clicking Freezers. 
+
 At the bottom of the page it has a GitHub logo, which if you click this will take you to this Git Repo.
 
 <a name="fp"></a>
