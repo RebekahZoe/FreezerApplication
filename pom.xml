@@ -12,7 +12,6 @@
     <groupId>com.bae</groupId>
     <artifactId>FreezerApplication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
     <name>FreezerApplication</name>
 
         <properties>
@@ -73,6 +72,12 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+           <scope>runtime</scope>
+        </dependency>
+        
     </dependencies>
 
     <build>
