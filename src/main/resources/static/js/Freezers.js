@@ -1,7 +1,7 @@
 "use strict";
 
 function getFreezers(){
-    axios.get('http://35.176.212.133:8181/FreezerApplication/getAllFreezers')
+    axios.get('/FreezerApplication/getAllFreezers')
     .then((response)=>{
         showFreezers(response.data);
         console.log(response.data);
@@ -45,7 +45,7 @@ function createFreezer(){
         else{
             console.log(freezer);
 
-            axios.post('http://35.176.212.133:8181/FreezerApplication/createFreezer',{
+            axios.post('/FreezerApplication/createFreezer',{
 
                 freezerName : freezer
             })
@@ -87,7 +87,7 @@ function deleteValidation(){
         else{
             console.log(freezer);
             if (confirm("Are you sure you want to delete this freezer?")){
-                axios.delete("http://35.176.212.133:8181/FreezerApplication/deleteFreezerByName/"+freezer)
+                axios.delete("/FreezerApplication/deleteFreezerByName/"+freezer)
                 .then((response)=>{
                     getFreezers();
                     console.log(response);
