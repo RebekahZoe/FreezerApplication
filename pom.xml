@@ -18,12 +18,17 @@
         <java.version>1.8</java.version>
     </properties>
 
-	<repositories>
+	<distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://your-host:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
     <repository>
-      <id>maven-group</id>
-      <url>http://3.10.32.214:8081/repository/maven-group/</url>
+      <id>nexus-releases</id>
+      <url>http://your-host:8081/repository/maven-releases/</url>
     </repository>
-  </repositories>
+  </distributionManagement>
+
     
     <dependencies>
 
