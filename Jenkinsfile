@@ -1,40 +1,40 @@
 pipeline {
   agent any
   stages {
-    stage(--Stop Previous--){
+    stage('----Stop Previous----'){
       steps{
         sh "docker stop mysql"
         sh "docker stop freezerapp"
         sh "docker system prune -a -f"
         }
       }
-    stage(--Create Network--){
+    stage('----Create Network----'){
       steps{
         sh "docker network create freezer-network"
         }
       }
-    stage(--Create MySQL Container--){
+    stage('----Create MySQL Container----'){
       steps{
         sh "docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:latest"
       }
     }
-    stage(--Connect MySQL to Network--){
+    stage('----Connect MySQL to Network----'){
       steps{
         sh "docker network connect freezer-network mysql"
       }
     }
-    stage(--Create Database--){
+    stage('----Create Database----'){
       steps{
         sh "sleep 30s"
         sh "docker container run -it --network freezer-network --rm mysql mysql -hmysql -u root -proot -e "create database freezer_database;""
      }
    }
-   stage(--Build Image For Application--){
+   stage('----Build Image For Application----'){
     steps{
       sh "docker build -t freezer-app ."
     }
    }
-   stage(--Run Container For Application--){
+   stage('----Run Container For Application----'){
     steps{
       sh "docker run --name freezerapp --network freezer-network -d -p 9090:8082 freezer-app"
     }
