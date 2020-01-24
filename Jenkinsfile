@@ -26,7 +26,7 @@ pipeline {
     stage('----Create Database----'){
       steps{
         sh "sleep 30s"
-        sh "docker container run -it --network freezer-network --rm mysql mysql -hmysql -u root -proot -e 'create database freezer_database;'"
+        sh "docker container run -it --network freezer-network --rm mysql mysql -hmysql -u root -proot -e create database freezer_database;"
      }
    }
    stage('----Build Image For Application----'){
