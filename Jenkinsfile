@@ -1,13 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('----Stop Previous----'){
-      steps{
-        sh "docker stop mysql"
-        sh "docker stop freezerapp"
-        sh "docker system prune -a -f"
-        }
-      }
+   // stage('----Stop Previous----'){
+     // steps{
+       // sh "docker stop mysql"
+       // sh "docker stop freezerapp"
+       // sh "docker system prune -a -f"
+       // }
+      //}
     stage('----Create Network----'){
       steps{
         sh "docker network create freezer-network"
