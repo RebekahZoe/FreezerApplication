@@ -5,8 +5,7 @@ pipeline {
       steps{
        // sh "docker stop mysql"
        // sh "docker stop freezerapp"
-        sh "docker system prune -a -f"
-        sh "docker network remove freezer-network"
+      //  sh "docker rmi mysql:latest freezer-app"
         }
       }
     stage('----Create Network----'){
