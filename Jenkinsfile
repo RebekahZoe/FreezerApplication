@@ -4,7 +4,7 @@ pipeline {
    stage('----Stop Previous----'){
       steps{
         sh "docker stop mysql"
-       // sh "docker stop freezerapp"
+        sh "docker stop freezerapp"
         sh "docker system prune -a -f"
         }
       }
