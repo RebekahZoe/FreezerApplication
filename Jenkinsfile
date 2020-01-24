@@ -3,9 +3,10 @@ pipeline {
   stages {
    stage('----Stop Previous----'){
       steps{
-        sh "docker stop mysql"
-        sh "docker stop freezerapp"
+       // sh "docker stop mysql"
+       // sh "docker stop freezerapp"
         sh "docker system prune -a -f"
+        sh "docker network remove freezer-network"
         }
       }
     stage('----Create Network----'){
