@@ -4,7 +4,7 @@ pipeline {
    stage('----Stop Previous----'){
       steps{
         sh "docker stop mysql " 
-        sh "docker stop freezerapp -f"
+        sh "docker stop freezerapp "
         sh "docker rmi mysql:latest freezer-app -f"
         }
       }
