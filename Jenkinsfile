@@ -5,6 +5,7 @@ pipeline {
       steps{
         sh "docker stop mysql " 
         sh "docker stop freezerapp "
+        sh "docker rm mysql freezerapp"
         sh "docker rmi mysql:latest freezer-app -f"
         sh "docker network remove freezer-network"
         }
