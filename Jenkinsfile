@@ -6,6 +6,7 @@ pipeline {
         sh "docker stop mysql " 
         sh "docker stop freezerapp "
         sh "docker rmi mysql:latest freezer-app -f"
+        sh "docker network remove freezer-network"
         }
       }
     stage('----Create Network----'){
