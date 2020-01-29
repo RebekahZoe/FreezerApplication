@@ -12,7 +12,7 @@ pipeline {
      // }
     stage('----Create Network----'){
       steps{
-        sh "sudo apt install docker.io"
+        sh "apt install docker.io"
         sh "docker network create freezer-network"
         }
       }
