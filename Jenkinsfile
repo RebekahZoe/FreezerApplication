@@ -10,11 +10,6 @@ pipeline {
        // sh "docker network remove freezer-network"
        // }
      // }
-    stage('----Create Network----'){
-      steps{
-        sh "docker network create freezer-network"
-        }
-      }
    stage('----Build Image For Application----'){
     steps{
       sh "docker build -t freezer-app ."
@@ -22,7 +17,7 @@ pipeline {
    }
    stage('----Run Container For Application----'){
     steps{
-      sh "docker run --name freezerapp --network freezer-network -d -p 9090:8082 freezer-app"
+      sh "docker run --name freezerapp -d -p 9090:8082 freezer-app"
     }
   }
  }
